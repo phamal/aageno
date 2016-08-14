@@ -4,10 +4,10 @@
  
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.yaad</groupId>
-  <artifactId>hello-world</artifactId>
-  <version>0.1-SNAPSHOT</version>
+  <artifactId>aageno</artifactId>
+  <version>1.0</version>
   <packaging>war</packaging>
-  <name>Jetty HelloWorld</name>
+  <name>Aageno</name>
  
   <properties>
     <jettyVersion>7.2.0.v20101020</jettyVersion>
