@@ -14,10 +14,10 @@ import javax.ws.rs.core.Response;
 public class YaadResource {
 
 	@GET
-	@Path("/{param}")
-	public Response getMsg(@PathParam("param") String msg) {
+	@Path("/name")
+	public Response getMsg(@PathParam("name") String name) {
 
-		String output = "Jersey say : " + msg;
+		String output = "Name is : " + name;
 
 		return Response.status(200).entity(output).build();
 
