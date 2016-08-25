@@ -2,8 +2,11 @@ package org.yaad.rest;
 
 
 import com.google.gson.Gson;
+import org.yaad.PersistenceManager;
 import org.yaad.dtos.HashTag;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.ws.rs.GET;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -33,6 +36,14 @@ public class YaadResource {
 
 		return Response.status(200).entity(gson.toJson(hashTag)).build();
 
+	}
+
+	@GET
+	@Path("/test")
+	public void test(){
+		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+		Query query = em.createNativeQuery("Select * from notes");
+		System.out.println(query.getResultList());
 	}
 
 }
