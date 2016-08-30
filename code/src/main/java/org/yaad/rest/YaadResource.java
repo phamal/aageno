@@ -2,14 +2,13 @@ package org.yaad.rest;
 
 
 import com.google.gson.Gson;
-import org.yaad.PersistenceManager;
+import org.yaad.dao.PersistenceManager;
 import org.yaad.dtos.HashTag;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.ws.rs.GET;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
