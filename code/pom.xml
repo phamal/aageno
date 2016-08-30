@@ -23,6 +23,25 @@
             </plugin>
         </plugins>
     </build>
+    <properties>
+        <version.picketlink.javaee.bom>2.7.1.Final</version.picketlink.javaee.bom>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.picketlink</groupId>
+                <artifactId>picketlink-javaee-6.0</artifactId>
+                <type>pom</type>
+                <scope>import</scope>
+                <version>${version.picketlink.javaee.bom}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+
+
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
@@ -63,6 +82,27 @@
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
             <version>7.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.eclipse.persistence/eclipselink -->
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>eclipselink</artifactId>
+            <version>2.6.2</version>
+        </dependency>
+
+        <!-- PicketLink Dependency -->
+        <dependency>
+            <groupId>org.picketlink</groupId>
+            <artifactId>picketlink</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- CDI API Dependency -->
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>
