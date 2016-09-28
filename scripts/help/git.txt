@@ -1,0 +1,19 @@
+########### Important GIT Commands ######
+How to merge from Stage down to QA ?? 
+
+
+Common commands : 
+	git log
+
+	git pull
+	
+	git push 
+	
+	git status
+
+	git add file
+
+	git commit -m "Message " 
+
+
+

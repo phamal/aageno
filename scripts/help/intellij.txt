@@ -1,0 +1,9 @@
+######### Intellij Tricks #############
+
+How to format codes ?? 
+
+Search file ?? 
+
+Shortcut to catch exception ?? 
+
+

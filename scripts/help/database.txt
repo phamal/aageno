@@ -1,0 +1,17 @@
+##### Notes regarding database #####
+
+Liquibase : 
+	db-Checksums       Clear Liquibase checksums.  Usage:  ant db-clearChecksums {-Ddb=[dpx|ref|dw|dm]}
+	db-releaseLocks         Release all liquibase database locks. Usage:  ant db-releaseLocks {-Ddb=[dpx|ref|dw|dm]}
+	db-rollback-count       Roll back the specified number of changesets.  Usage:  ant db-rollback-count {-Ddb=[dpx|ref|dw|dm]} -DrollbackCount=[number]
+	db-rollback-date        Roll back the database to the given date/time.  Usage:  ant db-rollback-date {-Ddb=[dpx|ref|dw|dm]} -DrollbackDate=[yyyy-MM-dd'T'HH:mm:ss]
+	db-rollback-day         Roll back all Liquibase changes applied today.  Usage:  ant db-rollback-day {-Ddb=[dpx|ref|dw|dm]}
+	db-rollback-tag         Roll back the database to the specified tag.  Usage:  ant db-clearChecksums -Ddb=[dpx|ref|dw|dm] -Dtag=[name]
+	db-status               Show list of unrun changesets. Usage:  ant db-status {-Ddb=[dpx|ref|dw|dm]}
+	db-tag                  Tag the current database state for future rollback.  Usage:  ant db-tag -Ddb=[dpx|ref|dw|dm] -Dtag=[name]
+	db-update               Apply all Liquibase updates.  Usage:  ant db-update {-Ddb=[dpx|ref|dw|dm]}
+	db-update-sql           Write database updates as SQL to STDOUT.  Usage:  ant db-update-sql {-Ddb=[dpx|ref|dw|dm]}
+	db-validate             Check the changelog for errors.  Usage:  ant db-validate {-Ddb=[dpx|ref|dw|dm]}
+ 
+
+

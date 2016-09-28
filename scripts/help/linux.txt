@@ -1,0 +1,20 @@
+###### Helpful linux commands ########
+
+TODO 
+	I can access lab1 but can't access the scripts folder. That means I dont have the root access. 
+
+Monitor
+	> ps -ef | grep notification
+	> top 
+
+Server access
+	> ssh links\\phamal@lab1.bidsync.com
+	> ssh links\\phamal@qa1.bidsync.com
+	> ssh links\\phamal@stage1.bidsync.com
+
+
+Server management
+	sudo su - tomcat	
+
+
+

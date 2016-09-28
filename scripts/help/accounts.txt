@@ -1,0 +1,15 @@
+######### Login information to various accounts  ########
+
+Bluesnap :
+
+Marketo:
+	phamal@bidsync.com | bidsyncdev1
+
+Mailgun: 
+
+
+New relic: 
+
+	
+	
+
