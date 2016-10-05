@@ -1,0 +1,20 @@
+####### Data export spike ########## 
+1. Agency ids needs to be provided. 
+2. Only filter is the date range. 
+3. Data are not real time. Aggregation refreshes in a certain intervals. 
+4. Example of a materialized view. 
+	CREATE MATERIALIZED VIEW DW.BID_VIEWED_SUPPLIER_MV 
+	TABLESPACE DWDATA
+	REFRESH FORCE
+	START WITH SYSDATE
+	NEXT NEXT_DAY(TRUNC(SYSDATE),'SUNDAY')+8/24
+	WITH PRIMARY KEY
+	AS 
+	SELECT DISTINCT dan.auctionid, OO.NAME VIEWED_SUPPLIER
+	  FROM DPX.DPX_AUCTION_NEW dan,
+	       DPX.dpx_org_access_entity doae,
+	       DPX.org_org oo
+	 WHERE     dan.current_head_roundid = doae.entity_id
+	       AND doae.entity_type = 'DPXROUND'
+	       AND doae.oid = oo.oid;
+5. I would recommend a combination of materalized view and existing realtime reporting tool to achieve the needs of Business Intelligence for links plus.  

@@ -1,0 +1,20 @@
+<div ng-controller="UpdateController">
+    <strong>{{words.length}}</strong>
+    <div ng-repeat="word in words">
+        <div style="padding:3px 5px;border:1px solid #cdcdcd;" ng-style="word.wordExist && {'background-color':'green'}">              
+        <div style="float:left;width:200px;">
+            <input type="text" ng-model="word.nepaliWord" />  
+        </div>
+        <div style="float:left;width:200px;">
+            <input type="text" ng-model="word.englishWord" />
+        </div>
+        <div style="float:left;width:100px;">
+            <input type="button" ng-click="saveWord(word)" value="Update" />            
+        </div>
+        <div style="float:left;width:100px;">
+            <input type="button" ng-click="deleteWord(word)" value="Delete" />
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+    </div>    
+</div>    

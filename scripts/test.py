@@ -6,9 +6,12 @@ import sys, getopt
 import subprocess
 import glob
 import os
+import re
+import time
 
 DPX_TEST_URL = ""
 NOTIFICATION_TEST_URL = ""
+
 
 
 # Status URLS ###
@@ -166,8 +169,8 @@ def monitorSmartProcure(domain):
 
 def monitorTax(domain):
     try:
-        SMARTPROCURE = "http://" + domain + ".bidsync.com:9380/bidsync-business-provider/rs/test/salestax"
-        response = getUrlResponse(SMARTPROCURE)
+        TAX_API = "http://" + domain + ".bidsync.com:9380/bidsync-business-provider/rs/test/salestax?zipcode=94204&city=sacramento&state=California&amount=1234"
+        response = getUrlResponse(TAX_API)
         json_obj = json.loads(response.text)
         print json_obj
 
@@ -268,9 +271,84 @@ def runbatch(domain, parameter):
             response = getUrlResponse(URL)
             print "\t Output : " + response.text
 
-
     except IOError:
         printError("Error running the batch")
+
+
+def runReport(domain,parameter):
+    url = "http://" + domain + ".bidsync.com:9380/bidsync-business-provider/rs/report/run"
+    payload = {'report_type': 'asdf', 'params': '123456'}
+    headers = {'Accept': 'application/json', 'Content-Type': 'application/json'}
+    r = requests.post(url, data=payload, headers=headers)
+
+def killDomain(domain):
+    ports = []
+    if domain == 'notification':
+        ports = [9408,9419,9448,9480,9481,9490]
+    elif domain == 'dpx':
+        ports = [9108,9119,9148,9180,9181,9190]
+    elif domain == 'bidsync':
+        ports = [9308,9319,9348,9380,9381,9390]
+    elif domain == 'cas':
+        ports = [9208,9219,9248,9280,9281,9290]
+    elif domain == 'all':
+        ports = [9108,9208,9308,9408]
+
+    print domain + " " + str(ports)
+    for port in ports:
+        killProcessesInPort(port)
+
+
+
+def killProcessesInPort(port):
+    for processid in processInPort(port):
+        print "Port : "+str(port) +" Process : " + str(processid);
+        subprocess.call(['kill',processid])
+
+def processInPort(port):
+    from subprocess import Popen, PIPE
+    p1 = Popen(['lsof', '-i', ':'+str(port)], stdout=PIPE)
+    processids = []
+    for line in iter(p1.stdout.readline, ''):
+        substrs = str.split(line);
+        if(substrs[1].isdigit()):
+             processids.append(substrs[1])
+
+    return processids
+
+
+def runAndPrintCommand(command):
+    action = subprocess.Popen(command, stdout=subprocess.PIPE)
+    output = action.communicate()[0]
+    print output
+
+def startAll(domain,parameter):
+    os.chdir('/apps/code/bidsync')
+
+    print "ant dist"
+    #runAndPrintCommand(['ant','dist'])
+
+    print "wft bidsync undeploy"
+    runAndPrintCommand(['wft','bidsync','undeploy'])
+    print "wft bidsync stop"
+    runAndPrintCommand(['wft', 'bidsync', 'undeploy'])
+    print "wft bidsync start"
+    runAndPrintCommand(['wft', 'bidsync', 'undeploy'])
+    print "wft bidsync deploy"
+    runAndPrintCommand(['wft', 'bidsync', 'deploy'])
+    monitorRef(domain)
+
+
+
+
+
+
+
+    #dpx_undeploy_command = ['wft', 'dpx', 'undeploy']
+    #notification_undeploy_command = ['wft', 'notification', 'undeploy']
+    #cas_undeploy_command = ['wft', 'cas', 'undeploy']
+
+
 
 
 ############ Actions ##############################
@@ -330,10 +408,22 @@ def main():
     elif action != '':
         if action == 'dpxnotificationbatch':
             actionDpxNotificationBatch(domain, parameter)
-        if action == 'runbatch':
+        elif action == 'runbatch':
             runbatch(domain, parameter)
+        elif action == 'sshaageno':
+            subprocess.call(['ssh', 'root@159.203.66.191'])
+        elif action == 'runreport':
+            runReport(domain,parameter)
+        elif action == "portprocess":
+            processInPort(parameter)
+        elif action == "killport":
+            killProcessesInPort(parameter)
+        elif action == "kill":
+            killDomain(parameter)
+        elif action == "startall":
+            startAll(domain,parameter)
         else:
-            print "Type what action to perform. actions : {dpxnotificationbatch | runbatch}"
+            print "Type what action to perform. actions : {dpxnotificationbatch | runbatch | runreport | sshaageno | portprocess | kill | killport}"
     elif helptopic != '':
         helpdir = '/apps/code/aageno/scripts/help/'
         if helptopic == 'options':
@@ -348,10 +438,7 @@ def main():
     else:
         print "Looks like you need some help. -h helptopics"
 
-    from subprocess import Popen, PIPE
-    p1 = Popen(['lsof', '-a', '-p9108', '-i4'], stdout=PIPE)
-    p2 = Popen(["grep", "LISTEN"], stdin=p1.stdout, stdout=PIPE)
-    print p2.communicate()[0]
+
 
 
 class bcolors:

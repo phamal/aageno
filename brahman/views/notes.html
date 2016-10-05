@@ -1,0 +1,58 @@
+<div style="padding:10px 20px;">                
+    <div style="float:left;width:20%;height:900px;overflow-y: auto;">
+        <div>
+            <div class="note" ng-repeat="note in notes" >
+                <a ng-click="editNote(note)"  style="cursor: pointer;margin-left: 10px;"><b>{{note.title}}</b></a>
+                <hr />
+                {{note.notesummary}}
+                <br />
+            </div>
+        </div>
+    </div>
+    <div style="float:left;width:80%;padding:20px;">
+
+        <div>                    
+            <a href="https://twitter.com/share?text={{newnote.notesummary}}&url=&hashtags={{newnote.commaSeperatedHastags}}" class="twitter-share-button" data-related="jasoncosta" data-lang="en" data-size="large" data-count="none">Tweet</a>
+
+            <a ng-click="displayEdit = !displayEdit"  style="cursor: pointer;">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </a>
+            
+            <a ng-click="removeNote(newnote)" ng-confirm-click="Are you sure you want to delete the note?" style="cursor: pointer;">
+                <span class="glyphicon glyphicon-trash"></span>
+            </a
+            
+            
+            
+            <small>{{newnote.cdate}}</small>                                                                            
+            <hr />
+            <div>
+                <div class="left smallLeftMargin" ng-repeat="tag in newnote.hashtags">
+                    <a class="smallLeftMargin" href="#hashtagnotes/{{tag.hashtag}}">#{{tag.hashtag}} </a> 
+                </div>
+                <div class="clear"></div>
+            </div>
+            <hr />
+        </div>    
+        
+        <div>
+            <div ng-show="!displayEdit">
+                <div  ng-bind-html="newnote.note"></div>       
+            </div>
+            <div ng-init="displayEdit = false" ng-show="displayEdit" style="margin-top: 50px;">    
+                <form>            
+                    <div ng-controller="CallbacksCtrl">
+                        <summernote height="300" ng-model="newnote.note" on-init="init()" on-enter="enter()" on-focus="focus(evt)"
+                                    on-blur="blur(evt)" on-paste="paste()" on-keyup="keyup(evt)" on-keydown="keydown(evt)"
+                                    on-image-upload="imageUpload(files, editor, welEditable);"></summernote>
+                    </div><br />
+                    <button class="btn btn-primary" ng-click="addNote()" >Save</button>
+                    <br />
+                </form>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+
+
+

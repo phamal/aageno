@@ -1,0 +1,15 @@
+/* 
+    Document   : shabdkosh
+    Created on : Jan 2, 2015, 7:21:12 PM
+    Author     : phamal
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+ul.menu li{
+    list-style: none;
+    float:left;
+    padding:3px 5px;
+    border:1px solid #cdcdcd;
+}
+

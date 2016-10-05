@@ -1,0 +1,7 @@
+#### INTACT ####
+
+Intaact portal. 
+	https://www.intacct.com/ia/acct/login.phtml
+
+Intacct.php : Syncs the data to intact from our database. It has the informations like Company Id, User ID and Password 
+	

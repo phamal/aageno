@@ -1,0 +1,27 @@
+<div ng-controller="AdminController">
+    <div style="margin-bottom: 10px;">
+        <input type="button" ng-click="resetCache()" value="Reset Cache" /> 
+    </div>
+    <textarea  rows="10" cols="50" ng-model="source" ></textarea>
+    <br />
+    <input type="Submit" value="Read source"  ng-click="readSource()"/>
+    <hr />
+    <div style="margin-top: 10px;"   ng-repeat="word in newwords">
+        <div style="padding:3px 5px;border:1px solid #cdcdcd;" ng-style="word.wordExist && {'background-color':'green'}">              
+            <div style="float:left;width:200px;">
+                <input type="text" ng-model="word.nepaliWord" />  
+            </div>
+            <div style="float:left;width:200px;">
+                <input type="text" ng-model="word.englishWord" />
+            </div>
+            <div style="float:left;width:100px;">
+                <input type="button" ng-click="saveWord(word)" value="Save" />            
+            </div>
+            <div style="float:left;width:100px;">
+                <input type="button" ng-click="rejectWord(word)" value="Reject" />
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+    </div>
+</div>
+

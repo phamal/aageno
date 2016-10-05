@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="summernoteDemo">
+    <head>
+        <title>Angular-summernote Demo</title>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">        
+        <link rel="stylesheet" type="text/css" href="/resources/bootstrap/css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
+        <script src="/resources/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
+        <script src="/resources/bootstrap/js/bootstrap.js"></script>
+
+
+        <link rel="stylesheet"  href="/resources/font-awesome/css/font-awesome.css" />
+        <link rel="stylesheet"  href="/resources/summernote/summernote.css" />
+                                           
+        
+        
+
+        <style>
+            body {
+                margin: 10px 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>angular-summernote</h1>
+        <p>angular directive for <a href="http://hackerwins.github.io/summernote/">Summernote</a></p>
+
+        <h2>summernote directive</h2>
+
+        <h4>use element</h4>
+    <summernote></summernote>
+
+    <h4>use attribute</h4>
+    <div summernote></div>
+
+    <h2>summernote options</h2>
+
+    <h4>height</h4>
+    <summernote height="300"></summernote>
+
+    <h4>focus</h4>
+    <summernote focus></summernote>
+
+    <div ng-controller="OptCtrl">
+        <h4>options object</h4>
+        <summernote config="options"></summernote>
+    </div>
+
+    <div ng-controller="CodeCtrl">
+        <h4>code : HTML string in summernote</h4>
+        <summernote ng-model="text"></summernote>
+
+        <br>
+        <textarea type="text" ng-model="text" style="width:100%;"></textarea></br>
+        text : {{text}}
+    </div>
+
+    <div ng-controller="CallbacksCtrl">
+        <h4>use callbacks</h4>
+        <summernote on-init="init()" on-enter="enter()" on-focus="focus(evt)"
+                    on-blur="blur(evt)" on-paste="paste()" on-keyup="keyup(evt)" on-keydown="keydown(evt)"
+                    on-image-upload="imageUpload(files, editor, welEditable);"></summernote>
+    </div>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.js"></script>
+        <script src="/resources/summernote/summernote.min.js"></script>
+        <script src="/resources/summernote/angular-summernote.js"></script>
+        
+
+    <script>
+        angular.module('summernoteDemo', ['summernote'])
+        .controller('OptCtrl', function($scope) {
+            $scope.options = {
+                height: 150,
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']]
+                ]
+            };
+        })
+        .controller('CodeCtrl', function($scope) {
+            $scope.text = "Hello World";
+        })
+        .controller('CallbacksCtrl', function($scope) {
+            $scope.init = function() { console.log('Summernote is launched'); }
+            $scope.enter = function() { console.log('Enter/Return key pressed'); }
+            $scope.focus = function(e) { console.log('Editable area is focused'); }
+            $scope.blur = function(e) { console.log('Editable area loses focus'); }
+            $scope.paste = function() { console.log('Called event paste'); }
+            $scope.keyup = function(e) { console.log('Key is released:', e.keyCode); }
+            $scope.keydown = function(e) { console.log('Key is pressed:', e.keyCode); }
+        });
+    </script>
+</body>
+</html>

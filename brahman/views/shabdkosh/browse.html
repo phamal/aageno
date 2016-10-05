@@ -1,0 +1,14 @@
+<div ng-controller="DictionaryController">
+    <div ng-repeat="groupedWords in groupedWordsList">
+        <div style="font-size: 20px; padding-left:10px;">
+            <a name="{{groupedWords.startsWith}}"></a>
+            <strong>{{groupedWords.startsWith}}</strong>
+        </div>    
+        <div>
+            <div style="width:300px;border:1px solid #cdcdcd;padding:3px 5px;margin:5px;" class="left smallLeftMargin" ng-repeat="word in groupedWords.words">
+                <a href="javascript:void(0)" title="word.englishWord">{{word.nepaliWord}} : {{word.englishWord}}</a> 
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>    
+</div>    
