@@ -1,6 +1,7 @@
 ######### Login information to various accounts  ########
 
 Bluesnap :
+	phamal@periscopeholdings.com | phamal | rJ1	
 
 Marketo:
 	phamal@bidsync.com | bidsyncdev1
@@ -17,3 +18,4 @@ Intaact :
 Stage Logins : 
 	vendor: "smsfred" or "biscobids"
 	agency: "kirk2012" or "ronc"
+	agency : manualmark : test1234

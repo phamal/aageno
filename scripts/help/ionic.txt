@@ -1,0 +1,20 @@
+####### Mobile development using ionic #######
+Architecture;
+	1. Backend is jaxrs/jpa in jetty server. 
+	2. Python scripth for scrapping data from the various sites. 
+	3. Mysql as the Relational database 
+	4. Elasticsearch for performing search. 
+	5. Front end ionic and Angular js. 
+
+Enviromnemt setup :
+	1. Installed npm in mac using brew. 
+	2. Downloaded android studio
+	3. Installed cordova : npm install -g cordova 
+	4. To check requirements : cordova requirements 
+
+Cordova Commands 
+	1. Cordova requirements 	
+
+IONIC Commands
+	1. Go to app and > ionic platform add ios | ionic build ios | ionic emulate ios
+	2. Go to app and > ionic platform add android | ionic build android | ionic emulate android

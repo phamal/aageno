@@ -8,6 +8,7 @@ import glob
 import os
 import re
 import time
+import sh
 
 DPX_TEST_URL = ""
 NOTIFICATION_TEST_URL = ""
@@ -98,6 +99,7 @@ def monitorRef(domain):
         response = getUrlResponse(REF)
 
         statuscode = response.status_code;
+        print response.text
         if statuscode == 200:
             printSuccess("Refactor is running")
         else:
@@ -317,6 +319,54 @@ def processInPort(port):
     return processids
 
 
+def runTest(file):
+    dir = ''
+    fileNameWithoutExtension = ''
+    if file == 'cas':
+        dir = "/apps/code/bidsync/bidsync-cas"
+    elif file == 'dao':
+        dir = "/apps/code/bidsync/bidsync-dao"
+    elif file == 'notification':
+        dir = "/apps/code/bidsync/notification"
+    elif file == 'business':
+        dir = "/apps/code/bidsync/business"
+    else:
+        if file.find(".java") == -1:
+            pattern = str(file)+".java"
+        else:
+            pattern = file
+
+        path = str(runCommandAndReturnOutput(['find','/apps/code/bidsync','-name',pattern])).strip()
+
+        dashPositions = [pos for pos, char in enumerate(path) if char == "/"]
+
+        dir = path[0:dashPositions[4]+1]
+
+        fileNameWithoutExtension = os.path.splitext(os.path.basename(file))[0]
+
+    os.chdir(dir)
+
+    if fileNameWithoutExtension != '':
+        if fileNameWithoutExtension.endswith("NG"):
+            prefix = path[path.find("com"):dashPositions[len(dashPositions) - 1]].replace("/", ".")
+            runAndPrintCommand(['ant','test','-Dtestclass='+prefix+"."+fileNameWithoutExtension])
+        else:
+            runAndPrintCommand(['ant', 'test', '-Dtestclass=' + fileNameWithoutExtension])
+    else:
+        runAndPrintCommand(['ant', 'test'])
+
+    print "Opening the test results : "
+
+    runAndPrintCommand(['open','target/test/reports/index.html'])
+
+def runDpxMain(classname):
+    runAndPrintCommand(['sudo','.','/apps/web/www/bidsync/batch/dpxclasspath','bidsync'])
+    runAndPrintCommand(['java','rfq.batch.DailyQuestionBatch'])
+
+def runCommandAndReturnOutput(command):
+    action = subprocess.Popen(command, stdout=subprocess.PIPE)
+    return action.communicate()[0]
+
 def runAndPrintCommand(command):
     action = subprocess.Popen(command, stdout=subprocess.PIPE)
     output = action.communicate()[0]
@@ -355,13 +405,14 @@ def startAll(domain,parameter):
 
 
 def main():
-    myopts, args = getopt.getopt(sys.argv[1:], "d:s:a:p:h:")
+    myopts, args = getopt.getopt(sys.argv[1:], "d:s:a:p:h:t:")
 
     domain = 'dev'
     action = ''
     status = ''
     parameter = ''
     helptopic = ''
+    anttestfile = ''
     for o, a in myopts:
         if o == '-d':
             domain = a
@@ -371,12 +422,13 @@ def main():
             action = a
         elif o == '-h':
             helptopic = a
+        elif o == '-t':
+            anttestfile = a
         elif o == '-p':
             try:
                 parameter = json.loads(a)
             except ValueError:
                 parameter = a;
-
         else:
             print("Usage: %s -d input -s output" % sys.argv[0])
 
@@ -422,8 +474,12 @@ def main():
             killDomain(parameter)
         elif action == "startall":
             startAll(domain,parameter)
+        elif action == "dpxrun":
+            runDpxMain(parameter)
         else:
             print "Type what action to perform. actions : {dpxnotificationbatch | runbatch | runreport | sshaageno | portprocess | kill | killport}"
+    elif anttestfile != '':
+        runTest(anttestfile)
     elif helptopic != '':
         helpdir = '/apps/code/aageno/scripts/help/'
         if helptopic == 'options':
@@ -431,7 +487,13 @@ def main():
             for file in files:
                 print os.path.splitext(os.path.basename(file))[0]
         else:
-            subprocess.call(['vi', helpdir+helptopic+'.txt'])
+            if helptopic.find(".") == -1:
+                file = helpdir + helptopic + '.txt';
+            else:
+                file = helpdir + helptopic;
+
+            subprocess.call(['vi', file])
+
 
 
 

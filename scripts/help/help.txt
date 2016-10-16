@@ -1,0 +1,7 @@
+######## Aaageno ###########
+
+Mysql :
+	Gave remote access to phamal user from my ip address:
+		grant all on aageno.* to phamal@'73.20.15.172' identified by 'kurakani';
+
+	

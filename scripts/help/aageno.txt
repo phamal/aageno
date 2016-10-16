@@ -1,0 +1,6 @@
+####### Aaageno App #####
+1. Extractor using python and save the data in mysql. 
+2. Setting up Mysql :
+	a. Mysql login phamal@bidsync.com rgJdarh1
+	b. Downloaded the installer.
+	c. Initial login | root@localhost fitjSpj)9ol fitjSpj)i9ol 

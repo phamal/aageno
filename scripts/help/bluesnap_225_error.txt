@@ -1,0 +1,6 @@
+Symptoms: 
+	1. Error 225 occurs while adding card to the system. 
+	2. Card was being attempted to charge with the wrong expiration date. 
+	3. One of the userid is 710565
+		a. Credit card information in the database:  Card type :____ ; Last 4 digit : _____ ; Expiration : ____
+		b. Credit card information in the bluesnap :  
