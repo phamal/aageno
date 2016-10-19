@@ -1,0 +1,10 @@
+########## requirements for nic model ############
+1. review design from ron. LNKPD-3943
+2. logical steps 
+        a. vendor registers. How ?
+	b. what permissions to give that vendor. Turn off the notifications  
+	c. form to enter the detail. ? 
+	d. call nic api to submit the information. 
+	e. what kind of confirmation. email through nic or from us. 
+	f. history of payments. 
+	g. Pass the information to finance. 
