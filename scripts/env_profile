@@ -2,3 +2,4 @@
 ### NAVIGATION
 alias mytools='/apps/code/aageno/scripts/phitools.sh '
 alias mytool='/apps/code/aageno/scripts/test.py '
+alias agpush='/apps/code/aageno/push.sh '
