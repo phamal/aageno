@@ -1,5 +1,5 @@
 #!/bin/sh
-echo "Pushing latest local changes ++ "
+echo "Pushing latest local changes +++++ "
 cd /apps/code/aageno/
 git add *
 git commit -m"$1"
