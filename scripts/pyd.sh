@@ -1,5 +1,5 @@
 #!/bin/sh
 echo "Download all dependencies "
 pip install bs4
-
+pip install lxml
 
