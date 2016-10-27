@@ -1,0 +1,7 @@
+######## Important work related links ######
+1. Agency 
+	1. Registering agency | https://lab.bidsync.com/AgencyRegistration?ac=orgregister&src=dpx
+
+2. Vendor 
+	1. Vendor Home | https://dev.bidsync.com/bidsync-app-web/vendor/shared/VendorHome.xhtml
+	2. Vendor Register | https://dev.bidsync.com/bidsync-app-web/vendor/register/ProductSelection.xhtml

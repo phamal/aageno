@@ -51,9 +51,8 @@ def scrapCompanies(url):
                 scrapCompanyDetail(company)
             print company
             print "********************"
-            company1 = Company()
-            company1.setName(company["name"])
-            print "Name : --> "+company1.getName()
+            company1 = Company(company["name"],company["symbol"],company["sector"],company["detaillink"])
+            company1.displayCompany()
             companies.append(company)
 
             ##Delete this

@@ -8,7 +8,6 @@ Marketo:
 
 Mailgun: 
 
-
 New relic: 
 
 Intaact : 
@@ -19,3 +18,12 @@ Stage Logins :
 	vendor: "smsfred" or "biscobids"
 	agency: "kirk2012" or "ronc"
 	agency : manualmark : test1234
+
+Lab Logins : 
+	smsfred/test1234
+        ogden15/test1234 
+	
+Dev login:
+	agency : kaylloydcpm | test1234
+
+NIC Portal Login: 

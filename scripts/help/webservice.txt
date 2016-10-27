@@ -1,0 +1,4 @@
+####### Webservice notes #########
+1. @QueryParam for get @FormParam for Post
+2. 
+

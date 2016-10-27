@@ -1,0 +1,16 @@
+####### Reports for parthenon #############
+
+1. "LINKS_BID" table has strange future start_dates (about 43,000 records) and a few strange future end dates. Can you investigate?
+> Find out why they are like that. 
+
+2. Not all bids with a status of "awarded" in the "LINKS_BID" table are found in the "LINKS_AWARDED_BID" table. This is a problem since I am supposed to take award amounts from the  "LINKS_AWARDED_BID" table. Can you investigate?
+> Find all the awarded bid. And also display the awarded amount. 
+
+3. "LINKS_AWARDED_BID" only includes bids from 2014-2016. Can it go further back in time?
+>
+ 
+4. (from yesterday, unresolved) Please confirm that this interpretation is correct:
+Award amounts and who was awarded is found in "LINKS_AWARDED_BID"
+Offer count, # vendors viewed and award status is found in "LINKS_BID" (ignore award amounts in this table)
+
+5. (from yesterday,unresolved) Attached is a list with 3,990 records from the new "SUBSCRIPTION_PAYMENT_HISTORY 5.18.05 PM"  table where the OID is not found in the "SUBSCRIPTION_HISTORY_MV". Is the  "SUBSCRIPTION_HISTORY_MV" table complete or are some records missing? 

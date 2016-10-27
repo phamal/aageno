@@ -2,12 +2,32 @@ class Company:
     'Common base class for all employees'
     empCount = 0
 
-    def __init__(self, name, symbol,sector,link):
+    def getName(self):
+        return self.name
+
+    def setName(self, name):
         self.name = name
+
+    def getSymbol(self):
+        return self.symbol
+
+    def setSymbol(self, symbol):
         self.symbol = symbol
+
+    def getWebsite(self):
+        return self.website
+
+    def setWebsite(self, website):
+        self.website = website
+
+    def getSector(self):
+        return self.sector
+
+    def setSector(self, sector):
         self.sector = sector
-        self.link = link
 
+    def getLastChangePrice(self):
+        return self.lastChangePrice
 
-    def displayCompany(self):
-        print "Name : ", self.name, ", Symbol: ", self.symbol
+    def setLastChangePrice(self, lastChangePrice):
+        self.lastChangePrice = lastChangePrice

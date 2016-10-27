@@ -482,10 +482,14 @@ def main():
         runTest(anttestfile)
     elif helptopic != '':
         helpdir = '/apps/code/aageno/scripts/help/'
-        if helptopic == 'options':
+        if helptopic == 'options' or helptopic == '':
             files =  glob.glob(helpdir+"*.txt")
+            count = 0;
+            line = ""
             for file in files:
                 print os.path.splitext(os.path.basename(file))[0]
+
+
         else:
             if helptopic.find(".") == -1:
                 file = helpdir + helptopic + '.txt';

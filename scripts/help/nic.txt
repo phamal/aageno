@@ -1,10 +1,36 @@
 ########## requirements for nic model ############
 1. review design from ron. LNKPD-3943
-2. logical steps 
-        a. vendor registers. How ?
-	b. what permissions to give that vendor. Turn off the notifications  
-	c. form to enter the detail. ? 
-	d. call nic api to submit the information. 
-	e. what kind of confirmation. email through nic or from us. 
-	f. history of payments. 
-	g. Pass the information to finance. 
+
+2. User Stories
+        I.(Identifing vendor, syncing to bidsync, sync process, permissions)
+		1. Vendor is identified as self reporting vendor in Buyspeed. If they have a contract with maryland then they are self reporting vendor. They will click a link and a information about whether or not they are a self reporting vendor is passed along. 
+		2. If they vendor is already registered how do we turn on the link. 
+		3. An api on the buyspeed side to identify whether the vendor is a self reporting vendor. 
+		4. If newly registered vendor, how do we know if they are doing business in maryland, and how do we know that they are self reporting vendor. 
+		5. A self reporting vendor coming from buyspeed do not have to accept terms and conditions. 
+		6. By default their notifications are turned off. 
+		7. If they do not have nigp codes let't not prompt them to add nigp codes. 
+		8. We know for the maryland vendor they are paying 1%, but for other vendors it might be different, how do we identify the rate. 
+		9. Questions for Edward ( How do we identify which vendor is the self paying? What to do with the vendors already registered ? Is it based on what contracts they have ?  
+	II. (Pay via NIC)
+		10. Pay fee online via ach payment.
+		11. Iframing
+		12. Confirmation
+		13. Email receipt
+		14. Sandbox to test it out.  
+	III. (Bidsync layout, form, upwell, pass history)
+		15. Form to pay
+		16. History of payments. 
+	IV. (Financial Reporting)  
+		17. How do we pass the information to finance. Does a simple file attachment sent. Api to download 
+the csv. ??
+		18. NIC provides ftp dump or cdv dump. We should provide a service where the finance can login and click a link to download the files. Or a batch that grabs the file and send an email to the finance.		
+
+
+3. Stake Holders: 
+	1. Fred Tillman (CIO)
+	2. Jason Barlow (Product Owner)
+	3. Edward Winston ( Developer Buyspeed side)
+	4. Chris Jacoby ( VP Client services)
+	5. Sirisha G Upadhyayala | Director of Development | supadhyayala@egov.com | (410) 274-4260
+	 

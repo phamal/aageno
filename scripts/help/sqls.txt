@@ -1,0 +1,89 @@
+### Agencies with type and state ##
+Select 
+  distinct O.Oid,o.name,
+  Case A.Agency_Type 
+   When 1 Then 'SchoolDistrict'
+   When 2 Then 'University'
+   When 3 Then 'State'
+   When 4 Then 'County'
+   When 5 Then 'City'
+   When 6 Then 'Municipality'
+   When 7 Then 'CommunityCollege'
+   When 8 Then 'Other'
+   When 9 Then 'Port Authority'
+   When 10 Then 'Federal'
+   When 11 Then 'Private'
+   When 12 Then 'Military'
+   When 13 Then 'Buildersexchanges'
+   When 14 Then 'SpecialDistrictAuthority'
+   Else 'NA' End As Agency_Type,adr.state
+  From Org_Org O, Dpx_Agency A , Org_Addr Adr
+Where O.Oid = A.Oid And O.Org_Type = 1 And Adr.Org_Oid = O.Oid
+order by o.name
+;
+
+### Payment history ###
+Select
+    Payment.Oid,Org.Name,Payment.Amount,
+    Sub.Id As Subscriptionid,
+    Sub_Tem.Short_Name,
+	  sub_tem.description,
+    payment.planid
+  From 
+    Acct_Onlinepay_Payment Payment
+  Join Org_Org Org  
+    On Org.Oid = Payment.Oid
+  Left Join Acct_Order_Item Item 
+    On Item.Planid = Payment.Planid
+  Left Join Subscriptions Sub 
+    On Sub.Id = Item.Itemid
+  Left Join Subscription_Templates Sub_Tem 
+    On Sub.Templateid = Sub_Tem.Id
+Where 
+  org.org_type =2 and
+  Sub.Start_Date > '01-JAN-16'
+;
+
+## Offer totals ### 
+with offer_detail as (
+Select Count(O.Offerid) as offer_count,R.Auctionid From Dpx_Offer O, Dpx_Round_New R 
+Where O.Roundid = R.Roundid 
+Group By R.Auctionid
+Order By Offer_Count Desc
+)
+select * from offer_detail where offer_count > 1000
+;
+
+### Award total for links bids ###
+WITH award_data AS
+(
+            SELECT
+               Dr.Auctionid,
+               do.bidderoid,
+               Dr.Award_Date,
+               dai.qty,
+               cols.unit_amount
+            FROM Dpx_Round_New Dr
+
+               JOIN dpx_offer do
+                  ON dr.roundid = do.roundid
+               JOIN dpx_aucitem dai
+                  ON dr.aucentryid = dai.aucentryid
+               JOIN dpx_offercols cols
+                  ON Do.Offerid = Cols.Offerid
+            WHERE dr.award_date > '01-JAN-2016'
+                 AND Dr.Award_Status = 4
+                 AND Do.Award_Status = 4
+                 AND dr.pricing_type IN (1, 4)
+)
+SELECT
+   Auctionid,
+   bidderoid,
+   Sum(Qty * Unit_Amount)
+FROM Award_Data
+GROUP BY Auctionid, Bidderoid;  
+
+
+
+
+
