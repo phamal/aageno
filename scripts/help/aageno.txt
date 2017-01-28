@@ -4,12 +4,14 @@
 	a. Mysql login phamal@bidsync.com rgJdarh1
 	b. Downloaded the installer.
 	c. Initial login | root@localhost fitjSpj)9ol fitjSpj)i9ol
+
 3. Elasticsearch in server : 
 	1. wget https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.7.2.deb
 	2. sudo dpkg -i elasticsearch-1.7.2.deb
  	3. Tip: If you want the latest released version of Elasticsearch, go to elastic.co to find the link, and then use wget to download it to your Droplet. Be sure to download the deb package.
 	4. The results of elasticsearch is being installed in /usr/share/elasticsearch and its scripts added to /etc/init.d/elasticsearch 
 	5. To make sure the elasticsearch starts and stops automatically with droplet, add its init script to the defaul runlevels in the command | sudo update-rc.d elasticsearch defaults
+		i. It can be run manually by this command | sudo service elasticsearch start
 	6. You can configre by | sudo nano /etc/elasticsearch/elasticsearch.yml
 	7. Elasticsearch should be running now. 
 		a. Check the status : curl -X GET 'http://http://159.203.66.191/:9200'

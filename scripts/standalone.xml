@@ -1,0 +1,497 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ns0:server xmlns:ns0="urn:jboss:domain:3.0" xmlns:ns1="urn:jboss:domain:logging:3.0" xmlns:ns10="urn:jboss:domain:jaxrs:1.0" xmlns:ns11="urn:jboss:domain:jca:3.0" xmlns:ns12="urn:jboss:domain:jdr:1.0" xmlns:ns13="urn:jboss:domain:jmx:1.3" xmlns:ns14="urn:jboss:domain:jpa:1.1" xmlns:ns15="urn:jboss:domain:jsf:1.0" xmlns:ns16="urn:jboss:domain:mail:2.0" xmlns:ns17="urn:jboss:domain:naming:2.0" xmlns:ns18="urn:jboss:domain:pojo:1.0" xmlns:ns19="urn:jboss:domain:remoting:3.0" xmlns:ns2="urn:jboss:domain:batch:1.0" xmlns:ns20="urn:jboss:domain:resource-adapters:3.0" xmlns:ns21="urn:jboss:domain:request-controller:1.0" xmlns:ns22="urn:jboss:domain:sar:1.0" xmlns:ns23="urn:jboss:domain:security-manager:1.0" xmlns:ns24="urn:jboss:domain:security:1.2" xmlns:ns25="urn:jboss:domain:transactions:3.0" xmlns:ns26="urn:jboss:domain:undertow:2.0" xmlns:ns27="urn:jboss:domain:webservices:2.0" xmlns:ns28="urn:jboss:domain:weld:2.0" xmlns:ns3="urn:jboss:domain:bean-validation:1.0" xmlns:ns4="urn:jboss:domain:datasources:3.0" xmlns:ns5="urn:jboss:domain:deployment-scanner:2.0" xmlns:ns6="urn:jboss:domain:ee:3.0" xmlns:ns7="urn:jboss:domain:ejb3:3.0" xmlns:ns8="urn:jboss:domain:io:1.1" xmlns:ns9="urn:jboss:domain:infinispan:3.0">
+
+    <ns0:extensions>
+        <ns0:extension module="org.jboss.as.clustering.infinispan" />
+        <ns0:extension module="org.jboss.as.connector" />
+        <ns0:extension module="org.jboss.as.deployment-scanner" />
+        <ns0:extension module="org.jboss.as.ee" />
+        <ns0:extension module="org.jboss.as.ejb3" />
+        <ns0:extension module="org.jboss.as.jaxrs" />
+        <ns0:extension module="org.jboss.as.jdr" />
+        <ns0:extension module="org.jboss.as.jmx" />
+        <ns0:extension module="org.jboss.as.jpa" />
+        <ns0:extension module="org.jboss.as.jsf" />
+        <ns0:extension module="org.jboss.as.logging" />
+        <ns0:extension module="org.jboss.as.mail" />
+        <ns0:extension module="org.jboss.as.naming" />
+        <ns0:extension module="org.jboss.as.pojo" />
+        <ns0:extension module="org.jboss.as.remoting" />
+        <ns0:extension module="org.jboss.as.sar" />
+        <ns0:extension module="org.jboss.as.security" />
+        <ns0:extension module="org.jboss.as.transactions" />
+        <ns0:extension module="org.jboss.as.webservices" />
+        <ns0:extension module="org.jboss.as.weld" />
+        <ns0:extension module="org.wildfly.extension.batch" />
+        <ns0:extension module="org.wildfly.extension.bean-validation" />
+        <ns0:extension module="org.wildfly.extension.io" />
+        <ns0:extension module="org.wildfly.extension.request-controller" />
+        <ns0:extension module="org.wildfly.extension.security.manager" />
+        <ns0:extension module="org.wildfly.extension.undertow" />
+    </ns0:extensions>
+
+
+    <ns0:management>
+        <ns0:security-realms>
+            <ns0:security-realm name="ManagementRealm">
+                <ns0:server-identities>
+                    <ns0:ssl>
+                        <ns0:keystore alias="serverkey" key-password="mypassword" keystore-password="mypassword" path="server.keystore" relative-to="jboss.server.config.dir" />
+                    </ns0:ssl>
+                </ns0:server-identities>
+                <ns0:authentication>
+                    <ns0:local default-user="$local" skip-group-loading="true" />
+                    <ns0:properties path="mgmt-users.properties" relative-to="jboss.server.config.dir" />
+                </ns0:authentication>
+                <ns0:authorization map-groups-to-roles="false">
+                    <ns0:properties path="mgmt-groups.properties" relative-to="jboss.server.config.dir" />
+                </ns0:authorization>
+            </ns0:security-realm>
+            <ns0:security-realm name="ApplicationRealm">
+                <ns0:authentication>
+                    <ns0:local allowed-users="*" default-user="$local" skip-group-loading="true" />
+                    <ns0:properties path="application-users.properties" relative-to="jboss.server.config.dir" />
+                </ns0:authentication>
+                <ns0:authorization>
+                    <ns0:properties path="application-roles.properties" relative-to="jboss.server.config.dir" />
+                </ns0:authorization>
+            </ns0:security-realm>
+        </ns0:security-realms>
+        <ns0:audit-log>
+            <ns0:formatters>
+                <ns0:json-formatter name="json-formatter" />
+            </ns0:formatters>
+            <ns0:handlers>
+                <ns0:file-handler formatter="json-formatter" name="file" path="audit-log.log" relative-to="jboss.server.data.dir" />
+            </ns0:handlers>
+            <ns0:logger enabled="false" log-boot="true" log-read-only="false">
+                <ns0:handlers>
+                    <ns0:handler name="file" />
+                </ns0:handlers>
+            </ns0:logger>
+        </ns0:audit-log>
+        <ns0:management-interfaces>
+            <ns0:http-interface http-upgrade-enabled="true" security-realm="ManagementRealm">
+                <ns0:socket-binding http="management-http" />
+            </ns0:http-interface>
+        </ns0:management-interfaces>
+        <ns0:access-control provider="simple">
+            <ns0:role-mapping>
+                <ns0:role name="SuperUser">
+                    <ns0:include>
+                        <ns0:user name="$local" />
+                    </ns0:include>
+                </ns0:role>
+            </ns0:role-mapping>
+        </ns0:access-control>
+    </ns0:management>
+
+    <ns0:profile>
+        <ns1:subsystem>
+            <ns1:console-handler name="CONSOLE">
+                <ns1:level name="INFO" />
+                <ns1:formatter>
+                    <ns1:named-formatter name="COLOR-PATTERN" />
+                </ns1:formatter>
+            </ns1:console-handler>
+            <ns1:periodic-rotating-file-handler autoflush="true" name="FILE">
+                <ns1:formatter>
+                    <ns1:named-formatter name="PATTERN" />
+                </ns1:formatter>
+                <ns1:file path="server.log" relative-to="jboss.server.log.dir" />
+                <ns1:suffix value=".yyyy-MM-dd" />
+                <ns1:append value="true" />
+            </ns1:periodic-rotating-file-handler>
+            <ns1:logger category="com.arjuna">
+                <ns1:level name="WARN" />
+            </ns1:logger>
+            <ns1:logger category="org.apache.tomcat.util.modeler">
+                <ns1:level name="WARN" />
+            </ns1:logger>
+            <ns1:logger category="org.jboss.as.config">
+                <ns1:level name="DEBUG" />
+            </ns1:logger>
+            <ns1:logger category="sun.rmi">
+                <ns1:level name="WARN" />
+            </ns1:logger>
+            <ns1:logger category="jacorb">
+                <ns1:level name="WARN" />
+            </ns1:logger>
+            <ns1:logger category="jacorb.config">
+                <ns1:level name="ERROR" />
+            </ns1:logger>
+            <ns1:root-logger>
+                <ns1:level name="INFO" />
+                <ns1:handlers>
+                    <ns1:handler name="CONSOLE" />
+                    <ns1:handler name="FILE" />
+                </ns1:handlers>
+            </ns1:root-logger>
+            <ns1:formatter name="PATTERN">
+                <ns1:pattern-formatter pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%c] (%t) %s%e%n" />
+            </ns1:formatter>
+            <ns1:formatter name="COLOR-PATTERN">
+                <ns1:pattern-formatter pattern="%K{level}%d{HH:mm:ss,SSS} %-5p [%c] (%t) %s%e%n" />
+            </ns1:formatter>
+        </ns1:subsystem>
+        <ns2:subsystem>
+            <ns2:job-repository>
+                <ns2:in-memory />
+            </ns2:job-repository>
+            <ns2:thread-pool>
+                <ns2:max-threads count="10" />
+                <ns2:keepalive-time time="30" unit="seconds" />
+            </ns2:thread-pool>
+        </ns2:subsystem>
+        <ns3:subsystem />
+        <ns4:subsystem>
+            <ns4:datasources>
+                <ns4:datasource enabled="true" jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" use-java-context="true">
+                    <ns4:connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</ns4:connection-url>
+                    <ns4:driver>h2</ns4:driver>
+                    <ns4:security>
+                        <ns4:user-name>sa</ns4:user-name>
+                        <ns4:password>sa</ns4:password>
+                    </ns4:security>
+                </ns4:datasource>
+                <ns4:datasource enabled="true" jndi-name="java:/oracledpx" pool-name="OracleDS" use-java-context="true">
+                    <ns4:connection-url>${cas.url}</ns4:connection-url>
+                    <ns4:driver>oracle</ns4:driver>
+                    <ns4:pool>
+                        <ns4:min-pool-size>10</ns4:min-pool-size>
+                        <ns4:max-pool-size>30</ns4:max-pool-size>
+                        <ns4:prefill>true</ns4:prefill>
+                    </ns4:pool>
+                    <ns4:security>
+                        <ns4:user-name>${cas.username}</ns4:user-name>
+                        <ns4:password>${cas.password}</ns4:password>
+                    </ns4:security>
+                </ns4:datasource>
+                <ns4:datasource enabled="true" jndi-name="java:/oracle" jta="true" pool-name="OracleRef" use-ccm="true">
+                    <ns4:connection-url>${cas.url}</ns4:connection-url>
+                    <ns4:driver-class>oracle.jdbc.driver.OracleDriver</ns4:driver-class>
+                    <ns4:driver>oracle</ns4:driver>
+                    <ns4:pool>
+                        <ns4:min-pool-size>10</ns4:min-pool-size>
+                        <ns4:max-pool-size>30</ns4:max-pool-size>
+                        <ns4:prefill>true</ns4:prefill>
+                    </ns4:pool>
+                    <ns4:security>
+                        <ns4:user-name>${ref.username}</ns4:user-name>
+                        <ns4:password>${ref.password}</ns4:password>
+                    </ns4:security>
+                    <ns4:validation>
+                        <ns4:valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.oracle.OracleValidConnectionChecker" />
+                        <ns4:background-validation>true</ns4:background-validation>
+                        <ns4:stale-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.oracle.OracleStaleConnectionChecker" />
+                        <ns4:exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.oracle.OracleExceptionSorter" />
+                    </ns4:validation>
+                </ns4:datasource>
+                <ns4:drivers>
+                    <ns4:driver module="com.h2database.h2" name="h2">
+                        <ns4:xa-datasource-class>org.h2.jdbcx.JdbcDataSource</ns4:xa-datasource-class>
+                    </ns4:driver>
+                    <ns4:driver module="com.oracle" name="oracle">
+                        <ns4:xa-datasource-class>oracle.jdbc.driver.OracleDriver</ns4:xa-datasource-class>
+                    </ns4:driver>
+                </ns4:drivers>
+            </ns4:datasources>
+        </ns4:subsystem>
+        <ns5:subsystem>
+            <ns5:deployment-scanner path="deployments" relative-to="jboss.server.base.dir" runtime-failure-causes-rollback="${jboss.deployment.scanner.rollback.on.failure:false}" scan-interval="5000" />
+        </ns5:subsystem>
+        <ns6:subsystem>
+            <ns6:global-modules>
+                <ns6:module name="bidsync.security" slot="main" />
+                <ns6:module name="org.picketlink" slot="main" />
+                <ns6:module name="com.oracle" slot="main" />
+                <ns6:module name="org.jboss.resteasy.resteasy-jaxrs" slot="main" />
+                <ns6:module name="org.eclipse.persistence" slot="main" />
+                <ns6:module name="org.bouncycastle" slot="main" />
+                <ns6:module name="org.apache.commons.io" slot="main" />
+                <ns6:module name="com.google.guava" slot="main" />
+                <ns6:module name="org.jaxen" slot="main" />
+                <ns6:module name="org.apache.xerces" slot="main" />
+                <ns6:module name="org.apache.xalan" slot="main" />
+                <ns6:module name="org.picketlink" slot="main" />
+                <ns6:module name="javax.faces.api" slot="main" />
+                <ns6:module name="com.sun.jsf-impl" slot="main" />
+                <ns6:module name="javax.api" slot="main" />
+            </ns6:global-modules>
+            <ns6:spec-descriptor-property-replacement>false</ns6:spec-descriptor-property-replacement>
+            <ns6:concurrent>
+                <ns6:context-services>
+                    <ns6:context-service jndi-name="java:jboss/ee/concurrency/context/default" name="default" use-transaction-setup-provider="true" />
+                </ns6:context-services>
+                <ns6:managed-thread-factories>
+                    <ns6:managed-thread-factory context-service="default" jndi-name="java:jboss/ee/concurrency/factory/default" name="default" />
+                </ns6:managed-thread-factories>
+                <ns6:managed-executor-services>
+                    <ns6:managed-executor-service context-service="default" core-threads="5" hung-task-threshold="60000" jndi-name="java:jboss/ee/concurrency/executor/default" keepalive-time="5000" max-threads="25" name="default" />
+                </ns6:managed-executor-services>
+                <ns6:managed-scheduled-executor-services>
+                    <ns6:managed-scheduled-executor-service context-service="default" core-threads="2" hung-task-threshold="60000" jndi-name="java:jboss/ee/concurrency/scheduler/default" keepalive-time="3000" name="default" />
+                </ns6:managed-scheduled-executor-services>
+            </ns6:concurrent>
+            <ns6:default-bindings context-service="java:jboss/ee/concurrency/context/default" datasource="java:jboss/datasources/ExampleDS" managed-executor-service="java:jboss/ee/concurrency/executor/default" managed-scheduled-executor-service="java:jboss/ee/concurrency/scheduler/default" managed-thread-factory="java:jboss/ee/concurrency/factory/default" />
+        </ns6:subsystem>
+        <ns7:subsystem>
+            <ns7:session-bean>
+                <ns7:stateful cache-ref="simple" default-access-timeout="5000" passivation-disabled-cache-ref="simple" />
+                <ns7:singleton default-access-timeout="5000" />
+            </ns7:session-bean>
+            <ns7:pools>
+                <ns7:bean-instance-pools>
+                    <ns7:strict-max-pool instance-acquisition-timeout="5" instance-acquisition-timeout-unit="MINUTES" max-pool-size="20" name="slsb-strict-max-pool" />
+                    <ns7:strict-max-pool instance-acquisition-timeout="5" instance-acquisition-timeout-unit="MINUTES" max-pool-size="20" name="mdb-strict-max-pool" />
+                </ns7:bean-instance-pools>
+            </ns7:pools>
+            <ns7:caches>
+                <ns7:cache name="simple" />
+                <ns7:cache aliases="passivating clustered" name="distributable" passivation-store-ref="infinispan" />
+            </ns7:caches>
+            <ns7:passivation-stores>
+                <ns7:passivation-store cache-container="ejb" max-size="10000" name="infinispan" />
+            </ns7:passivation-stores>
+            <ns7:async thread-pool-name="default" />
+            <ns7:timer-service default-data-store="default-file-store" thread-pool-name="default">
+                <ns7:data-stores>
+                    <ns7:file-data-store name="default-file-store" path="timer-service-data" relative-to="jboss.server.data.dir" />
+                </ns7:data-stores>
+            </ns7:timer-service>
+            <ns7:remote connector-ref="http-remoting-connector" thread-pool-name="default" />
+            <ns7:thread-pools>
+                <ns7:thread-pool name="default">
+                    <ns7:max-threads count="10" />
+                    <ns7:keepalive-time time="100" unit="milliseconds" />
+                </ns7:thread-pool>
+            </ns7:thread-pools>
+            <ns7:default-security-domain value="other" />
+            <ns7:default-missing-method-permissions-deny-access value="true" />
+            <ns7:log-system-exceptions value="true" />
+        </ns7:subsystem>
+        <ns8:subsystem>
+            <ns8:worker name="default" />
+            <ns8:buffer-pool name="default" />
+        </ns8:subsystem>
+        <ns9:subsystem>
+            <ns9:cache-container default-cache="default" module="org.wildfly.clustering.server" name="server">
+                <ns9:local-cache name="default">
+                    <ns9:transaction mode="BATCH" />
+                </ns9:local-cache>
+            </ns9:cache-container>
+            <ns9:cache-container default-cache="passivation" module="org.wildfly.clustering.web.infinispan" name="web">
+                <ns9:local-cache name="passivation">
+                    <ns9:locking isolation="REPEATABLE_READ" />
+                    <ns9:transaction mode="BATCH" />
+                    <ns9:file-store passivation="true" purge="false" />
+                </ns9:local-cache>
+                <ns9:local-cache name="persistent">
+                    <ns9:locking isolation="REPEATABLE_READ" />
+                    <ns9:transaction mode="BATCH" />
+                    <ns9:file-store passivation="false" purge="false" />
+                </ns9:local-cache>
+            </ns9:cache-container>
+            <ns9:cache-container aliases="sfsb" default-cache="passivation" module="org.wildfly.clustering.ejb.infinispan" name="ejb">
+                <ns9:local-cache name="passivation">
+                    <ns9:locking isolation="REPEATABLE_READ" />
+                    <ns9:transaction mode="BATCH" />
+                    <ns9:file-store passivation="true" purge="false" />
+                </ns9:local-cache>
+                <ns9:local-cache name="persistent">
+                    <ns9:locking isolation="REPEATABLE_READ" />
+                    <ns9:transaction mode="BATCH" />
+                    <ns9:file-store passivation="false" purge="false" />
+                </ns9:local-cache>
+            </ns9:cache-container>
+            <ns9:cache-container default-cache="local-query" module="org.hibernate.infinispan" name="hibernate">
+                <ns9:local-cache name="local-query">
+                    <ns9:eviction max-entries="10000" strategy="LRU" />
+                    <ns9:expiration max-idle="100000" />
+                </ns9:local-cache>
+                <ns9:local-cache name="entity">
+                    <ns9:transaction mode="NON_XA" />
+                    <ns9:eviction max-entries="10000" strategy="LRU" />
+                    <ns9:expiration max-idle="100000" />
+                </ns9:local-cache>
+                <ns9:local-cache name="timestamps" />
+            </ns9:cache-container>
+        </ns9:subsystem>
+        <ns10:subsystem />
+        <ns11:subsystem>
+            <ns11:archive-validation enabled="true" fail-on-error="true" fail-on-warn="false" />
+            <ns11:bean-validation enabled="true" />
+            <ns11:default-workmanager>
+                <ns11:short-running-threads>
+                    <ns11:core-threads count="50" />
+                    <ns11:queue-length count="50" />
+                    <ns11:max-threads count="50" />
+                    <ns11:keepalive-time time="10" unit="seconds" />
+                </ns11:short-running-threads>
+                <ns11:long-running-threads>
+                    <ns11:core-threads count="50" />
+                    <ns11:queue-length count="50" />
+                    <ns11:max-threads count="50" />
+                    <ns11:keepalive-time time="10" unit="seconds" />
+                </ns11:long-running-threads>
+            </ns11:default-workmanager>
+            <ns11:cached-connection-manager />
+        </ns11:subsystem>
+        <ns12:subsystem />
+        <ns13:subsystem>
+            <ns13:expose-resolved-model />
+            <ns13:expose-expression-model />
+            <ns13:remoting-connector />
+        </ns13:subsystem>
+        <ns14:subsystem>
+            <ns14:jpa default-datasource="" default-extended-persistence-inheritance="DEEP" />
+        </ns14:subsystem>
+        <ns15:subsystem />
+        <ns16:subsystem>
+            <ns16:mail-session jndi-name="java:jboss/mail/Default" name="default">
+                <ns16:smtp-server outbound-socket-binding-ref="mail-smtp" />
+            </ns16:mail-session>
+        </ns16:subsystem>
+        <ns17:subsystem>
+            <ns17:remote-naming />
+        </ns17:subsystem>
+        <ns18:subsystem />
+        <ns19:subsystem>
+            <ns19:endpoint worker="default" />
+            <ns19:http-connector connector-ref="default" name="http-remoting-connector" security-realm="ApplicationRealm" />
+        </ns19:subsystem>
+        <ns20:subsystem />
+        <ns21:subsystem />
+        <ns22:subsystem />
+        <ns23:subsystem>
+            <ns23:deployment-permissions>
+                <ns23:maximum-set>
+                    <ns23:permission class="java.security.AllPermission" />
+                </ns23:maximum-set>
+            </ns23:deployment-permissions>
+        </ns23:subsystem>
+        <ns24:subsystem>
+            <ns24:security-domains>
+                <ns24:security-domain cache-type="default" name="other">
+                    <ns24:authentication>
+                        <ns24:login-module code="Remoting" flag="optional">
+                            <ns24:module-option name="password-stacking" value="useFirstPass" />
+                        </ns24:login-module>
+                        <ns24:login-module code="RealmDirect" flag="required">
+                            <ns24:module-option name="password-stacking" value="useFirstPass" />
+                        </ns24:login-module>
+                    </ns24:authentication>
+                </ns24:security-domain>
+                <ns24:security-domain cache-type="default" name="jboss-web-policy">
+                    <ns24:authorization>
+                        <ns24:policy-module code="Delegating" flag="required" />
+                    </ns24:authorization>
+                </ns24:security-domain>
+                <ns24:security-domain cache-type="default" name="jboss-ejb-policy">
+                    <ns24:authorization>
+                        <ns24:policy-module code="Delegating" flag="required" />
+                    </ns24:authorization>
+                </ns24:security-domain>
+                <ns24:security-domain cache-type="default" name="sp">
+                    <ns24:authentication>
+                        <ns24:login-module code="org.picketlink.identity.federation.bindings.wildfly.SAML2LoginModule" flag="required" />
+                    </ns24:authentication>
+                </ns24:security-domain>
+                <ns24:security-domain cache-type="default" name="idp">
+                    <ns24:authentication>
+                        <ns24:login-module code="UsersRoles" flag="required">
+                            <ns24:module-option name="usersProperties" value="users.properties" />
+                            <ns24:module-option name="rolesProperties" value="roles.properties" />
+                        </ns24:login-module>
+                    </ns24:authentication>
+                </ns24:security-domain>
+                <ns24:security-domain cache-type="default" name="bidsync-cas">
+                    <ns24:authentication>
+                        <ns24:login-module code="com.bidsync.picketlink.CASUsernamePasswordLoginModule" flag="required">
+                            <ns24:module-option name="dsJndiName" value="java:/oracledpx" />
+                            <ns24:module-option name="userPathPrefix" value="PersonsTable" />
+                            <ns24:module-option name="rolesPathPrefix" value="RolesPathTable" />
+                        </ns24:login-module>
+                    </ns24:authentication>
+                </ns24:security-domain>
+            </ns24:security-domains>
+        </ns24:subsystem>
+        <ns25:subsystem>
+            <ns25:core-environment>
+                <ns25:process-id>
+                    <ns25:uuid />
+                </ns25:process-id>
+            </ns25:core-environment>
+            <ns25:recovery-environment socket-binding="txn-recovery-environment" status-socket-binding="txn-status-manager" />
+        </ns25:subsystem>
+        <ns26:subsystem>
+            <ns26:buffer-cache name="default" />
+            <ns26:server name="default-server">
+                <ns26:ajp-listener name="ajp" socket-binding="ajp" />
+                <ns26:http-listener name="default" socket-binding="http-listener-1" />
+                <ns26:http-listener name="http-listener-2" socket-binding="http-listener-2" />
+                <ns26:https-listener name="httpsServer" security-realm="ApplicationRealm" socket-binding="https" />
+                <ns26:host alias="localhost" name="default-host">
+                    <ns26:location handler="welcome-content" name="/" />
+                    <ns26:filter-ref name="server-header" />
+                    <ns26:filter-ref name="x-powered-by-header" />
+                </ns26:host>
+            </ns26:server>
+            <ns26:servlet-container name="default">
+                <ns26:jsp-config />
+                <ns26:websockets />
+            </ns26:servlet-container>
+            <ns26:handlers>
+                <ns26:file name="welcome-content" path="${jboss.home.dir}/welcome-content" />
+            </ns26:handlers>
+            <ns26:filters>
+                <ns26:response-header header-name="Server" header-value="WildFly/9" name="server-header" />
+                <ns26:response-header header-name="X-Powered-By" header-value="Undertow/1" name="x-powered-by-header" />
+            </ns26:filters>
+        </ns26:subsystem>
+        <ns27:subsystem>
+            <ns27:wsdl-host>${jboss.bind.address:127.0.0.1}</ns27:wsdl-host>
+            <ns27:endpoint-config name="Standard-Endpoint-Config" />
+            <ns27:endpoint-config name="Recording-Endpoint-Config">
+                <ns27:pre-handler-chain name="recording-handlers" protocol-bindings="##SOAP11_HTTP ##SOAP11_HTTP_MTOM ##SOAP12_HTTP ##SOAP12_HTTP_MTOM">
+                    <ns27:handler class="org.jboss.ws.common.invocation.RecordingServerHandler" name="RecordingHandler" />
+                </ns27:pre-handler-chain>
+            </ns27:endpoint-config>
+            <ns27:client-config name="Standard-Client-Config" />
+        </ns27:subsystem>
+        <ns28:subsystem />
+    </ns0:profile>
+
+    <ns0:interfaces>
+        <ns0:interface name="management">
+            <ns0:inet-address value="${jboss.bind.address.management:127.0.0.1}" />
+        </ns0:interface>
+        <ns0:interface name="public">
+            <ns0:inet-address value="${jboss.bind.address:127.0.0.1}" />
+        </ns0:interface>
+        <ns0:interface name="unsecure">
+            <ns0:inet-address value="${jboss.bind.address.unsecure:127.0.0.1}" />
+        </ns0:interface>
+        <ns0:interface name="global">
+            <ns0:any-address />
+        </ns0:interface>
+    </ns0:interfaces>
+
+    <ns0:socket-binding-group default-interface="global" name="standard-sockets" port-offset="${jboss.socket.binding.port-offset:0}">
+        <ns0:socket-binding interface="management" name="management-http" port="${jboss.management.http.port:9191}" />
+        <ns0:socket-binding interface="management" name="management-https" port="${jboss.management.https.port:9148}" />
+        <ns0:socket-binding name="ajp" port="${jboss.ajp.port:9108}" />
+        <ns0:socket-binding name="http" port="${jboss.http.port:8180}" />
+        <ns0:socket-binding name="https" port="${jboss.https.port:9119}" />
+        <ns0:socket-binding name="txn-recovery-environment" port="4112" />
+        <ns0:socket-binding name="txn-status-manager" port="4113" />
+        <ns0:socket-binding fixed-port="false" name="http-listener-1" port="9180" />
+        <ns0:socket-binding fixed-port="false" name="http-listener-2" port="9181" />
+        <ns0:outbound-socket-binding name="mail-smtp">
+            <ns0:remote-destination host="localhost" port="25" />
+        </ns0:outbound-socket-binding>
+    </ns0:socket-binding-group>
+
+    <ns0:deployments>
+        </ns0:deployments>
+</ns0:server>

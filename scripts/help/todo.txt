@@ -1,13 +1,51 @@
 ###### TODO List ########
-Work todo
-	1. Report and inquiry answers to annilie
-	2. Nic spike and create user stories
-	3.    
+Work todo :
+	* Create NIC tasks for next sprint. 
+	* Decide what to do with the SKUs
+ 	* Local reference Id needs to be more readable like 6 digit number. 	 
 
-Home todo:
-	1. 
+Home todo :
+	* Get light bulbs, schedule an appointment for Joe's checkup
+	* Invest in Standard Chartered and Sikhar Insurance shares in Nepal.
+	* Deposit 2000 to chase bank account. Jan 16. Tax return. 
+	* Go to court on Feb 8 at 1:30 at bluffdale city
+	* Return the SSN information to the UHC, Or submit that online 
+	* CAR 
+		> Switch to geico and bundle with condo insurance.
+		> Finance login | Autopay Setup
+	* Create an app to parse all the wellsfargo transactions and categorize them.
+	* Call etrade and get find out what to do with the loss of Sandridge and Pennverginia which went bankrupt.
+	* Additional source of income.(Dog vacay, website advertisement, app advertisement, freelance)  
+	* Saturday night dinner 
+		1. Sweep, vacuum and mop living room, clean bathrooms, 
+		2. Shopping list : 
+			a. Drinks,
+			b. 
+	 	3. Ask ranjan and rohit to bring games.	
+			 
+WORK Daily:
+	1. Crucible make sure all reviews are complete
+	2. Scurm board | make sure items are in the proper status
+	3. Big time hours are logged. 
+	4. Check the meetings and attend them. 
+	5. Check slack messages. 
+	
+Home Daily : 
+	1. Bloomberg.com | Reditt.com | Nytimes.com
+	2. Bank transactions
+	3. One lecture per day to read. 
+	4. One stock news per day. 
+	5. Chat with one person each day doesnot matter who he is.  
 
+Home Monthly: 
+	1. Review last months transaction
+	2. Plan for next month 
+	3. Pay credit cards | Transfer 2000 to chase
+	4. Figure out ways to reduce fees, charges and interest. And ways to sav money for next month 
+ 
 Aageno Todo : 
 	1. Backup system for the notes:
+	2. Become more proficient with angular 2 
+	3. Frontend system to load news. 
 
 

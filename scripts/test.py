@@ -9,6 +9,8 @@ import os
 import re
 import time
 import sh
+import xml
+
 
 DPX_TEST_URL = ""
 NOTIFICATION_TEST_URL = ""
@@ -111,7 +113,7 @@ def monitorRef(domain):
 
 def monitorBatches(domain):
     try:
-        BATCH_STATUS_API = "http://" + domain + ".bidsync.com:9380/bidsync-business-provider/rs/test/batchstatus"
+        BATCH_STATUS_API = "http://" + domain + ".bidsync.com:9180/bidsync-business-provider/rs/test/batchstatus"
         print "Bach statuses : "
         response = getUrlResponse(BATCH_STATUS_API)
         json_obj = json.loads(response.text)
@@ -261,11 +263,11 @@ def runbatch(domain, parameter):
     try:
         URL = ''
         if parameter == 'indexwebbids':
-            URL = "http://" + domain + ".bidsync.com:9380/bidsync-business-provider/rs/batch/indexWebExtractBids?roundCount=1"
+            URL = "http://" + domain + ".bidsync.com:9180/bidsync-business-provider/rs/batch/indexWebExtractBids?roundCount=1"
         elif parameter == 'indexauctions':
-            URL = "http://" + domain + ".bidsync.com:9380/bidsync-business-provider/rs/batch/indexAuctions?roundCount=1"
+            URL = "http://" + domain + ".bidsync.com:9180/bidsync-business-provider/rs/batch/indexAuctions?roundCount=1"
         elif parameter == 'mailgunstatuses':
-            URL = "http://" + domain + ".bidsync.com:9380/bidsync-business-provider/rs/batch/mailgunDeliveryStatuses"
+            URL = "http://" + domain + ".bidsync.com:9180/bidsync-business-provider/rs/batch/mailgunDeliveryStatuses"
         else:
             print "Unable to identify which batch to run. Here are the parameters : {indexwebbids | indexauctions | mailgunstatuses}"
 

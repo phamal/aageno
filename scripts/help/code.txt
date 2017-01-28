@@ -1,0 +1,18 @@
+	if (charge.getTaxAmount() == null || charge.getTaxAmount().equals(new BigDecimal(0))) {
+					GetTaxResult taxResult = null;
+
+					//2.5 RECORD THE TAX Amount
+					try {
+
+						taxResult = SalesTax.recordTaxinvoice(getAmount(), sub.getDescription(), sub.getOrg().getAddressOfType(Address.TYPE_MAIN), sub.getOrg(), String.valueOf(paymentId), null);
+					}
+					catch (SQLException e) {
+
+					}
+					if (taxResult != null && taxResult.getResultCode() == CommonResponse.SeverityLevel.Success) {
+						online.setTaxAmount(BigDecimal.valueOf(taxResult.getTotalTax()));
+					}
+				}
+				else {
+					online.setTaxAmount(charge.getTaxAmount());
+				}

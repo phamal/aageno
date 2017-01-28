@@ -1,0 +1,32 @@
+######## Architecture ###########
+> Things to check for the smooth running of the application : 
+	1. Database is up. Check the vm is running. Be able to query dpx and refactor. 
+	2. All the apps are deployed. Check the status by running wft bidsync|DPX|notification|cas status. 
+	3. Check the rewrite rules. 
+	4. Check the logs. Apps/web/logs
+	5. Make sure apache is running. Sudo apachectl restart. 
+	6. Make sure postfix is running for the notification to go out. Sudo postfix status. 
+	7. Check /etc/bidsync/data to make sure everything is all right. 
+	8. Check the apache setting /apps/web/apache2
+> ApplicationConstants have the constants that are application level.
+
+> Server Maintenance and monitoring:	
+	1. Crontab view and change : sudo crontab -u tomcat -l or -e
+
+> Database 
+	1. ant -p gives you the options. ant db-clearChecksums clears the checksums 
+
+> Security : 
+       cp /apps/web/tools/security-service/java_jars/* jdk1.7.0_80.jdk/Contents/Home/jre/lib/ext/
+       cp /apps/web/tools/security-service/java_jars/* jdk1.7.0_80.jdk/Contents/Home/jre/lib/ext/
+       cp /apps/web/tools/security-service/java_jars/* jdk1.8.0_112.jdk/Contents/Home/jre/lib/ext/ 
+
+> Logging : 
+	1. This allows us to log from anywhere.
+		RSHttpClient rsHttpClient = new RSHttpClient("http://dev.bidsync.com");
+		try {
+			rsHttpClient.executeGet("/bidsync-app-web/rs/crm/test?log="+tableName);
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}

@@ -1,5 +1,7 @@
 ########## requirements for nic model ############
-1. review design from ron. LNKPD-3943
+1. UI designs. 
+	1. Shane's initial design
+	2. Design flow to opt in for vendor services if they are fee supplier. 
 
 2. User Stories
         I.(Identifing vendor, syncing to bidsync, sync process, permissions)
@@ -26,11 +28,65 @@
 the csv. ??
 		18. NIC provides ftp dump or cdv dump. We should provide a service where the finance can login and click a link to download the files. Or a batch that grabs the file and send an email to the finance.		
 
+i
 
-3. Stake Holders: 
+3. Bidsync/ Pages :
+	1. Main trigger to turn on notification settings. Accept terms and conditions.
+	2. Initial invitation email with the link to bidsync login.
+	3. Take to the form directly if the vendor has only one agency with the contract. Some kind of indication in the vendor home. 
+
+4. BSO/Bidsync : 
+	1. Initial import script to bring information of the vendors who opted for the self pay.
+	2. Check to see if the vendor has been synced to bidsync from bso
+	3. Pass contracts information. 
+	4. Alternate vendor ID needs to be passes as identifier.
+	5. A contract can have only one primary vendor. 
+	6. Basic purchase user checks the box. 
+	7. Initial API call. If they are not registering. 
+	8. one form per contract. 
+	9. Flag and unflag. What if the contract expires. 
+	
+5. Accounting/FINANCE : 
+	1. NIC are responsible for refund, credits. 
+	2. Merchant account is owned by NIC. 
+	3. We own the form to submit the payment to the merchant account. 
+	4. Finance will login to the NIC portal and run the reports. 
+	5. Display the NIC customer support number only in certain cases.
+	6. Report on which vendors are supposed to pay, which paid and didn't pay in a month.  
+	7. Initial import script to bring information of the vendors who opted for the self pay. 
+
+6. Bidsync/NIC integration:
+	1. Payment gateway
+
+7. Internal Admin  Screens: 
+	1. SKUs
+	2. Phone number. 
+	3. Forms configuration. 
+	4. Report for finance
+	5. Display supplier contracts map.
+
+	 
+8. Documnets are under Documents > Work > NIC  
+
+
+9. Stake Holders: 
 	1. Fred Tillman (CIO)
 	2. Jason Barlow (Product Owner)
 	3. Edward Winston ( Developer Buyspeed side)
 	4. Chris Jacoby ( VP Client services)
 	5. Sirisha G Upadhyayala | Director of Development | supadhyayala@egov.com | (410) 274-4260
-	 
+
+10. Database.
+	1. Supplier_contract_fee_form
+	2. Supplier_bso_contract
+	3. supplier_services column in dpx_supplier
+	
+
+
+11. Questions : 
+	i. What to do with the SKUs ? SKUs per contract ? Do we generate the SKUs and assign to contract ? 
+	ii. Common check out URL ? 
+	iii. Stage and prod have different WSDL.   
+	iv. Test data (Checking,Routing Number, Account Number, etc. for the success scenarios)
+	V. Success if its in the limbo. Can we query the status of the transaction by local refid ?  
+	VI.  

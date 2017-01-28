@@ -1,0 +1,5 @@
+Coursera data science class:
+1.Pulling data from web, making sense and publish in database. 
+2. Good data set always trumps. 
+3. Word use analysis. For example, wikileak you dont read them all but rather write algorithms and analyse them. 
+4. 

@@ -1,13 +1,20 @@
 #!/usr/bin/python
 import urllib2
 import bs4
+import json
 import sys
+from elasticsearch import  Elasticsearch
 sys.path.append('entities/')
-from Company import Company
 
 
 links = {}
 companies = [{}]
+
+def indexCompany(company):
+    es = Elasticsearch(['http://159.203.66.191:9200'])
+    res = es.index(index="nepalstock", doc_type='company', id=company["symbol"], body=company)
+    print(res['created'])
+
 
 def scrapCompanyDetail(company):
     print company["detaillink"]
@@ -49,16 +56,8 @@ def scrapCompanies(url):
                 detailLink = companyLinks[0].attrs["href"]
                 company["detaillink"] = detailLink
                 scrapCompanyDetail(company)
-            print company
-            print "********************"
-            company1 = Company()
-            company1.setName(company["name"])
-            print "Name : --> "+company1.getName()
-            companies.append(company)
 
-            ##Delete this
-            #if company["sector"] != "Sector":
-            #    break;
+            indexCompany(company)
 
 
     allLinks = soup.select("a")
@@ -76,10 +75,10 @@ def scrapCompanies(url):
     for link in links:
         if links[link] == False:
             nextUrl = link
-            break
 
-    #if nextUrl != '':
-        #scrapPage(nextUrl)
+
+    if nextUrl != '':
+        scrapCompanies(nextUrl)
 
 
 def main():

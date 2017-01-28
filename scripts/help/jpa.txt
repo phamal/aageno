@@ -1,0 +1,6 @@
+Examples
+1. Boolean column : 
+	<column name="zero_sales" type="number(1)" defaultValue="0">
+                <constraints nullable="false"/>
+        </column>
+	private boolean zeroSales;

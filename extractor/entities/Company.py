@@ -31,3 +31,9 @@ class Company:
 
     def setLastChangePrice(self, lastChangePrice):
         self.lastChangePrice = lastChangePrice
+
+    def getLink(self):
+        return self.link
+
+    def setLink(self, link):
+        self.link = link

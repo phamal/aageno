@@ -1,0 +1,4 @@
+1. 500 error after logging into internal. 
+2. Logging out from internal is not working. 
+3. Coming from wordpress site, taking to stage instead of internal.
+4. 

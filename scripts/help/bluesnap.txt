@@ -1,0 +1,6 @@
+1. Login : phamal | phamal@periscopeholdings.com | Jatha@1
+2. Gateway.java(Bluesnap.java) > run > formCharge | sumbitCharge > 
+	1. Sales Tax Calculation : Subscription.java > setItemTax
+	2. CreditCardPaymentMethod.java > Run Payment > 
+	3. AccountingOrderProcessor > ProcessOrder >
+	4. Invoice > pay  

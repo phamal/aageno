@@ -3,8 +3,26 @@
 	1. Pet vs Cattle example
 	2. Right-sizing : Matching the demand, Choosing the right instance, Scaling elasticly 
 	3. Reserved Instances : Establish baseline demand that you want to reserve capacity. 
-	4. Spot Instances : Get the resources for high demand.   
+	4. Spot Instances : Get the resources for high demand. Saves cost. Jobs should be resumable.    
 	5. Loggin at Scale : Logging in a distributed environment. Manataining managable scalable environment. 100s of server running, If a server is down remove it and replace it with another. Any logs will get lost, so need to make sure that the logging infrastructure can accomadate such scenarios. 
 	5. Monitoring : 
 	6. Resiliency and Fault tolerance: User sees a blank screen: What are you failiure points? What are your strategies to handle that ?
-	7. Defensive development : Plan for problem and code to fix them.  	
+	7. Defensive development : Plan for problem and code to fix them. 
+		a. Circuit breakers
+		b. Exponential backoff. 
+		c. try catch > from every thing to something and handle accordingly
+	8. Automate all the things: 
+		a. Automate as much as possible. 
+		b. Automate deployment. 
+		c. Automate integration
+		d. Automate refinement 
+	9. Building AMIs
+		a. Machine images. At basics operating system. Building on top of that, configuration. 	9. Building AMIs
+		a. Machine images. At basics operating system. Building on top of that, configuration. 	9. Building AMIs
+		a. Machine images. At basics operating system. Building on top of that, configuration. 	9. Building AMIs
+		a. Machine images. At basics operating system. Building on top of that, configuration. 	9. Building AMIs
+		a. Machine images. At basics operating system. Building on top of that, configuration. 	9. Building AMIs
+		a. Machine images. At basics operating system. Building on top of that, configuration. 	9. Building AMIs
+		a. Machine images. At basics operating system. Building on top of that, configuration. 	9. Building AMIs
+		a. Machine images. At basics operating system. Building on top of that, configuration. 	9. Building AMIs
+		a. Machine images. At basics operating system. Building on top of that, configuration. 	  	

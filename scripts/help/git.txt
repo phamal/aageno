@@ -15,5 +15,8 @@ Common commands :
 
 	git commit -m "Message " 
 
+Problems and solutions :
+
+1. If the branch is diverged. git rest --hard origin
 
 

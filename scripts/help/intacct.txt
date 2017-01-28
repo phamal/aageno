@@ -6,6 +6,9 @@ Intaact portal.
 Intacct.php : Syncs the data to intact from our database. It has the informations like Company Id, User ID and Password 
 
 
-1. How to help of we have to sync individual records/Queries ? 
-> Brian use to help intacct people if there is an error. Need to figure that out.
-	
+1. Manually push the record to intacct 
+	a. Get the request/information from accounting
+	b. Check the logical steps in intacct.php
+	c. Check the logics in DPXIntacct.java
+	d. Get the orderid and make the batchid to null in acct_intacct_order orderid comes from acct_order
+	e. Table involved acct_intacct_order | Acct_Order_Item | Acct_Onlinepay_Payment | Org_User | acct_charge | acct_intacct_charge |  

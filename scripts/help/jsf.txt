@@ -1,0 +1,20 @@
+> Spinning action : mailgun.xhtml
+		onclick="actionStarted($(this))"
+                oncomplete="actionComplete()" 
+
+> Page Prerender action :
+	1. termsofuse.xhtml
+	2. embeddedsearchresults.xhtml
+
+> Getting the url of the page. Faces.getViewId().endsWith("VendorHome.xhtml"); | SessionBean.java
+
+> File Upload | BidExtractView.java | WebBidsUploadView.java
+
+> Currency | <f:convertNumber type="currency" currencySymbol="#{__System.currencySymbol}"imaxFractionDigits="#{__System.currencyMaxFractionDigits}"/>
+
+> Display message | ViewUtil.setMessage(FacesContext.getCurrentInstance(), "skuUpdate", "SKU has been updated");
+
+> Dialog : oncomplete="companyContactDialog.show();" <p:dialog widgetVar="reportDetail" width="500" modal="true" visible="true">Detail</p>
+
+> Importing enums in JSF page : You can import enums in JSF page using omnifaces library.  xmlns:o="http://omnifaces.org/ui"
+	> <o:importConstants type="com.bidsync.shared.common.constants.Pref"/> But make sure this is inside the form or atleast inside content. 
