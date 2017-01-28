@@ -83,7 +83,7 @@ def monitorAll(domain):
 
 
 ############# Actions ###########################
-def stocksDownload():
+def stocksDownload(domain):
     runCommand(['cd', '/apps/code/aageno/extractor/'])
     runAndPrintCommand(['./main.py'])
 
@@ -158,9 +158,9 @@ def main():
             print "Type what status you want to see. statuses {elasticsearch }"
     elif action != '':
         if action == 'stocks':
-            stocksDownload()
+            stocksDownload(domain)
         if action == "downloadlib":
-            downloadLib()
+            downloadLib(domain)
         else:
             print "Type what action to perform. actions : {stocks | dowanloadlib | runreport | sshaageno | portprocess | kill | killport}"
 
