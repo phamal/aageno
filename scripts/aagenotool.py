@@ -87,9 +87,9 @@ def stocksDownload(domain):
     runCommand(['cd', '/apps/code/aageno/extractor/'])
     runAndPrintCommand(['./main.py'])
 
-def downloadLib():
-    runCommand(['cd', '/apps/code/aageno/scripts'])
-    runAndPrintCommand(['./pyd.sh'])
+def downloadLib(domain):
+    runCommand(['cd', '/apps/code/aageno/scripts/'])
+    subprocess.call(['./pyd.sh'])
 
 def runCommand(command):
     subprocess.Popen(command, stdout=subprocess.PIPE)
