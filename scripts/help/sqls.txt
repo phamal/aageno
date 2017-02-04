@@ -92,4 +92,4 @@ update subscriptions set credit_card_id = null where oid = :oid;
 
 
 #### Mailgun report for heidi ##### 
-Select email,error,status,note,closed_at From Mailgun_Bounce_Email where closed_at >= '01-DEC-16' and closed_at < '01-JAN-17';
+eelect email,error,status,note,closed_at From Mailgun_Bounce_Email where closed_at >= '01-DEC-16' and closed_at < '01-JAN-17';

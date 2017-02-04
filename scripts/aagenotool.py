@@ -84,12 +84,17 @@ def monitorAll(domain):
 
 ############# Actions ###########################
 def stocksDownload(domain):
-    runCommand(['cd', '/apps/code/aageno/extractor/'])
+    os.chdir('/apps/code/aageno/extractor/')
     runAndPrintCommand(['./main.py'])
 
 def downloadLib(domain):
-    runCommand(['cd', '/apps/code/aageno/scripts/'])
-    subprocess.call(['./pyd.sh'])
+    os.chdir('/apps/code/aageno/scripts/')
+    runAndPrintCommand(['./pyd.sh'])
+
+def startCore(domain):
+    os.chdir('/apps/code/aageno/core/')
+    runAndPrintCommand(['./main.py'])
+
 
 def runCommand(command):
     subprocess.Popen(command, stdout=subprocess.PIPE)
@@ -161,8 +166,10 @@ def main():
             stocksDownload(domain)
         if action == "downloadlib":
             downloadLib(domain)
+        if action == "startcore":
+            startCore(domain)
         else:
-            print "Type what action to perform. actions : {stocks | dowanloadlib | runreport | sshaageno | portprocess | kill | killport}"
+            print "Type what action to perform. actions : {stocks | dowanloadlib | startcore | sshaageno | portprocess | kill | killport}"
 
     elif helptopic != '':
         helpdir = '/apps/code/aageno/scripts/help/'

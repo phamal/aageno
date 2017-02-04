@@ -12,16 +12,9 @@ Home todo :
 	* Return the SSN information to the UHC, Or submit that online 
 	* CAR 
 		> Switch to geico and bundle with condo insurance.
-		> Finance login | Autopay Setup
 	* Create an app to parse all the wellsfargo transactions and categorize them.
 	* Call etrade and get find out what to do with the loss of Sandridge and Pennverginia which went bankrupt.
 	* Additional source of income.(Dog vacay, website advertisement, app advertisement, freelance)  
-	* Saturday night dinner 
-		1. Sweep, vacuum and mop living room, clean bathrooms, 
-		2. Shopping list : 
-			a. Drinks,
-			b. 
-	 	3. Ask ranjan and rohit to bring games.	
 			 
 WORK Daily:
 	1. Crucible make sure all reviews are complete

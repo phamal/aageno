@@ -15,3 +15,8 @@
 	6. You can configre by | sudo nano /etc/elasticsearch/elasticsearch.yml
 	7. Elasticsearch should be running now. 
 		a. Check the status : curl -X GET 'http://http://159.203.66.191/:9200'
+
+4. Angular Quickstart : 
+	1. https://github.com/angular/quickstart 
+	2. npm install | npm start
+	3. Jetbrain webstorm IDE for angular development
