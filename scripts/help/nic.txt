@@ -89,4 +89,9 @@ i
 	iii. Stage and prod have different WSDL.   
 	iv. Test data (Checking,Routing Number, Account Number, etc. for the success scenarios)
 	V. Success if its in the limbo. Can we query the status of the transaction by local refid ?  
-	VI.  
+	VI.
+
+12. Remaining main issues :
+	1. Receipt
+	2. Message pages:
+	3. Bug fixes:  

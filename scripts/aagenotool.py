@@ -91,6 +91,10 @@ def downloadLib(domain):
     os.chdir('/apps/code/aageno/scripts/')
     runAndPrintCommand(['./pyd.sh'])
 
+def backUpNotes(domain):
+    os.chdir('/apps/code/aageno/notes/')
+    runAndPrintCommand(['./brahman.py'])
+
 def startCore(domain):
     os.chdir('/apps/code/aageno/core/')
     runAndPrintCommand(['./main.py'])
@@ -168,6 +172,8 @@ def main():
             downloadLib(domain)
         if action == "startcore":
             startCore(domain)
+        if action == 'backupnotes':
+            backUpNotes(domain)
         else:
             print "Type what action to perform. actions : {stocks | dowanloadlib | startcore | sshaageno | portprocess | kill | killport}"
 
