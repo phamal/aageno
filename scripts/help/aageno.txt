@@ -20,3 +20,6 @@
 	1. https://github.com/angular/quickstart 
 	2. npm install | npm start
 	3. Jetbrain webstorm IDE for angular development
+
+> Core APP:
+	1. Core app is python microservices. Uses Ptyhon flask, 
