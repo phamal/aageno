@@ -101,6 +101,9 @@ def startCore(domain):
     os.chdir('/apps/code/aageno/core/')
     runAndPrintCommand(['./main.py'])
 
+def stopCore(domain):
+    killProcessesInPort('5000')
+
 def restartElasticsearchIfNeeded(domain):
     running = monitorElasticSearch(domain)
     if running:
@@ -109,7 +112,21 @@ def restartElasticsearchIfNeeded(domain):
         print('service elasticsearch start')
         runCommand(['service','elasticsearch','start'])
 
+def killProcessesInPort(port):
+    for processid in processInPort(port):
+        print "Port : "+str(port) +" Process : " + str(processid);
+        subprocess.call(['kill',processid])
 
+def processInPort(port):
+    from subprocess import Popen, PIPE
+    p1 = Popen(['lsof', '-i', ':'+str(port)], stdout=PIPE)
+    processids = []
+    for line in iter(p1.stdout.readline, ''):
+        substrs = str.split(line);
+        if(substrs[1].isdigit()):
+             processids.append(substrs[1])
+
+    return processids
 
 def runCommand(command):
     subprocess.Popen(command, stdout=subprocess.PIPE)
@@ -183,6 +200,8 @@ def main():
             downloadLib(domain)
         if action == "startcore":
             startCore(domain)
+        if action == "stopcore":
+            stopCore(domain)
         if action == 'backupnotes':
             backUpNotes(domain)
         if action == 'restartes':
