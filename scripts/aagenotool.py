@@ -69,8 +69,10 @@ def monitorElasticSearch(domain):
         status_code = json_obj["status"]
         if status_code == 200:
             printSuccess("Elasticsearch is running")
+            return True
         else:
             printError("Error : Elasticsearch  is not running")
+            return False
 
     except IOError:
         printError("Error connecting aageno elasticsearch")
@@ -98,6 +100,15 @@ def backUpNotes(domain):
 def startCore(domain):
     os.chdir('/apps/code/aageno/core/')
     runAndPrintCommand(['./main.py'])
+
+def restartElasticsearchIfNeeded(domain):
+    running = monitorElasticSearch(domain)
+    if running:
+        print('Es already running')
+    else:
+        print('service elasticsearch start')
+        runCommand(['service','elasticsearch','start'])
+
 
 
 def runCommand(command):
@@ -174,8 +185,11 @@ def main():
             startCore(domain)
         if action == 'backupnotes':
             backUpNotes(domain)
+        if action == 'restartes':
+            restartElasticsearchIfNeeded(domain)
         else:
-            print "Type what action to perform. actions : {stocks | dowanloadlib | startcore | sshaageno | portprocess | kill | killport}"
+            print "Type what action to perform. actions : {stocks | dowanloadlib | startcore " \
+                  " | backupnotes | restartes }"
 
     elif helptopic != '':
         helpdir = '/apps/code/aageno/scripts/help/'

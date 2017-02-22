@@ -1,28 +1,33 @@
 ###### TODO List ########
 Work todo :
-	* Create NIC tasks for next sprint. 
-	* Decide what to do with the SKUs
- 	* Local reference Id needs to be more readable like 6 digit number. 	 
-
+	* Finish Report, Demo that to daniella 
+	* Remove SupplierBsoContract entity and tablei
+	* Perform some end-to-end testings
+	* Fix defects by keith
+	* How to access crucible from home. 
+	* Create buyspeed environment
 Home todo :
-	* Becoming warren buffet
-	* Get light bulbs, schedule an appointment for Joe's checkup
+	* Compile vegas expenses. 
+	* Take Jyotsana to doctor on friday. 
+	* File EAD for Jyotsana http://www.h1bwiki.com/h4-ead-filing-guide-document-checklist/
+	* File tax return before april. Etrade loss. Jyotsana's non eligibility. Mortgage tax
+	* Get light bulbs.
 	* Invest in Standard Chartered and Sikhar Insurance shares in Nepal.
-	* Deposit 2000 to chase bank account. Jan 16. Tax return. 
-	* Go to court on Feb 8 at 1:30 at bluffdale city
+	* Deposit 2000 to chase bank account. Feb 16. Tax return. 
 	* Return the SSN information to the UHC, Or submit that online 
 	* CAR 
-		> Switch to geico and bundle with condo insurance.
+		> Update university federal credit union with the Insurance information
 	* Create an app to parse all the wellsfargo transactions and categorize them.
 	* Call etrade and get find out what to do with the loss of Sandridge and Pennverginia which went bankrupt.
 	* Additional source of income.(Dog vacay, website advertisement, app advertisement, freelance)  
-			 
+
 WORK Daily:
-	1. Crucible make sure all reviews are complete
-	2. Scurm board | make sure items are in the proper status
-	3. Big time hours are logged. 
-	4. Check the meetings and attend them. 
-	5. Check slack messages. 
+	* Daily Scrum: Link : https://periscopeholdings.highfive.com/daily-scrum-team-011 | Phone : 1 201-479-9764
+	* Crucible make sure all reviews are complete
+	* Scurm board | make sure items are in the proper status
+	* Big time hours are logged. 
+	* Check the meetings and attend them. 
+	* Check slack messages. 
 	
 Home Daily : 
 	1. Bloomberg.com | Reditt.com | Nytimes.com
@@ -36,10 +41,10 @@ Home Monthly:
 	2. Plan for next month 
 	3. Pay credit cards | Transfer 2000 to chase
 	4. Figure out ways to reduce fees, charges and interest. And ways to sav money for next month 
- 
+	5. Car payment 
 Aageno Todo : 
-	1. Backup system for the notes:
-	2. Become more proficient with angular 2 
-	3. Frontend system to load news. 
+		. Backup system for the notes:
+		. Become more proficient with angular 2 
+		. Frontend system to load news. 
 
 

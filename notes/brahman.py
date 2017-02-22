@@ -12,7 +12,7 @@ from elasticsearch import  Elasticsearch
 def indexNote(note):
     es = Elasticsearch(['http://159.203.66.191:9200'])
     res = es.index(index="brahman", doc_type='note', id=note["maintag"], body=note)
-    print(note["maintag"]+" Backup: "+str(res['created'])
+    print(note["maintag"]+" Backup: "+str(res['created']))
 
 
 def noteBackUps():

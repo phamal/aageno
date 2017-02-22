@@ -11,6 +11,7 @@ links = {}
 companies = [{}]
 
 def indexCompany(company):
+    print "Indexing "+company["symbol"]
     es = Elasticsearch(['http://159.203.66.191:9200'])
     res = es.index(index="nepalstock", doc_type='company', id=company["symbol"], body=company)
     print(res['created'])

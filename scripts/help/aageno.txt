@@ -3,7 +3,7 @@
 2. Setting up Mysql :
 	a. Mysql login phamal@bidsync.com rgJdarh1
 	b. Downloaded the installer.
-	c. Initial login | root@localhost fitjSpj)9ol fitjSpj)i9ol
+	c. Initial login | root@localhost fitjSpj)9ol fitjSpj)i9ol | mysql -u root -p kurakani
 
 3. Elasticsearch in server : 
 	1. wget https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.7.2.deb
@@ -22,4 +22,5 @@
 	3. Jetbrain webstorm IDE for angular development
 
 > Core APP:
-	1. Core app is python microservices. Uses Ptyhon flask, 
+	1. Core app is python microservices. Uses Ptyhon flask,
+	2. Run the app in (0:0:0:0) instead of localhost to be accessable from  
