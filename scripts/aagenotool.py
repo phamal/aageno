@@ -77,10 +77,23 @@ def monitorElasticSearch(domain):
     except IOError:
         printError("Error connecting aageno elasticsearch")
 
+def monitorFlaskApp(domain):
+    try:
+        flaskApp = "http://159.203.66.191:5000/test"
+
+        response = getUrlResponse(flaskApp)
+        print str(response);
+
+        
+
+    except IOError:
+        printError("Error connecting aageno main app")
+
 
 def monitorAll(domain):
     print "******CHECKING VARIOUS STATUSES*******"
     monitorElasticSearch(domain)
+    monitorFlaskApp(domain)
 
 
 
@@ -190,7 +203,7 @@ def main():
 
     if status != '':
         if status == 'all':
-            monitorElasticSearch(domain)
+            monitorAll(domain)
         else:
             print "Type what status you want to see. statuses {elasticsearch }"
     elif action != '':

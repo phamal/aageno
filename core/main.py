@@ -13,8 +13,11 @@ db = SQLAlchemy(app)
 
 @app.route("/")
 def hello():
+    return "Hello aageno"
 
-    return "Hello World!"
+@app.route("/test")
+def hello():
+    return "Success"
 
 @app.route("/stocks")
 def stocksList():
