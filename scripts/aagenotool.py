@@ -104,20 +104,19 @@ def monitorAll(domain):
 
 ############# Actions ###########################
 def stocksDownload(domain):
-    os.chdir('/apps/code/aageno/extractor/')
+    os.chdir(getSysConfig('aageno_app','aagenoBase')+'/extractor/')
     runAndPrintCommand(['./main.py'])
 
 def downloadLib(domain):
-    os.chdir('/apps/code/aageno/scripts/')
+    os.chdir(getSysConfig('aageno_app','aagenoBase')+'/scripts/')
     runAndPrintCommand(['./pyd.sh'])
 
 def backUpNotes(domain):
-    os.chdir('/apps/code/aageno/notes/')
+    os.chdir(getSysConfig('aageno_app','aagenoBase')+'/notes/')
     runAndPrintCommand(['./brahman.py'])
 
 def startCore(domain):
-    baseDir = getSysConfig('aageno_app','aagenoBase')
-    os.chdir(baseDir+'/core/')
+    os.chdir(getSysConfig('aageno_app','aagenoBase')+'/core/')
     runAndPrintCommand(['./main.py'])
 
 def stopCore(domain):
@@ -130,6 +129,14 @@ def restartElasticsearchIfNeeded(domain):
     else:
         print('service elasticsearch start')
         runCommand(['service','elasticsearch','start'])
+
+def restartCoreIfNeeded(domain):
+    running = monitorFlaskApp(domain)
+    if running:
+        print('Aaageno is running')
+    else:
+        print('Starting aageno app')
+        startCore(domain)
 
 def killProcessesInPort(port):
     for processid in processInPort(port):
@@ -225,9 +232,11 @@ def main():
             backUpNotes(domain)
         if action == 'restartes':
             restartElasticsearchIfNeeded(domain)
+        if action == 'restartcore':
+            restartCoreIfNeeded(domain)
         else:
             print "Type what action to perform. actions : {stocks | dowanloadlib | startcore " \
-                  " | backupnotes | restartes }"
+                  " | backupnotes | restartes | restartcore}"
 
     elif helptopic != '':
         helpdir = '/apps/code/aageno/scripts/help/'
