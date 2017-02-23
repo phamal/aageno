@@ -16,7 +16,7 @@ def hello():
     return "Hello aageno"
 
 @app.route("/test")
-def hello():
+def test():
     return "Success"
 
 @app.route("/stocks")

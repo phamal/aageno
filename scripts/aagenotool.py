@@ -84,7 +84,7 @@ def monitorFlaskApp(domain):
         response = getUrlResponse(flaskApp)
         print str(response);
 
-        
+
 
     except IOError:
         printError("Error connecting aageno main app")
