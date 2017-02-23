@@ -17,7 +17,7 @@ def hello():
 
 @app.route("/test")
 def test():
-    return "Success"
+    return "Restarting core as part of the CI"
 
 @app.route("/stocks")
 def stocksList():
