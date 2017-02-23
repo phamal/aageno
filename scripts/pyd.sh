@@ -11,4 +11,4 @@ sudo pip install configparser
 echo "sudo pip install pandas "
 echo "sudo pip install tika "
 echo "Restarting aageno app"
-aagenotool -a
+python /root/aageno/scripts/aagenotool.py -a restartcore
