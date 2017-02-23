@@ -9,4 +9,6 @@ sudo pip install flask_sqlalchemy
 sudo pip install sqlalchemy
 sudo pip install configparser
 echo "sudo pip install pandas "
-echo "sudo pip install tika "   
+echo "sudo pip install tika "
+echo "Restarting aageno app"
+aagenotool -a

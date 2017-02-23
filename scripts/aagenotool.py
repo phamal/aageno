@@ -232,14 +232,17 @@ def main():
             backUpNotes(domain)
         if action == 'restartes':
             restartElasticsearchIfNeeded(domain)
-        if action == 'restartcore':
+        if action == 'restartcoreifstopped':
             restartCoreIfNeeded(domain)
+        if action == 'restartcore':
+            stopCore(domain)
+            startCore(domain)
         else:
             print "Type what action to perform. actions : {stocks | dowanloadlib | startcore " \
-                  " | backupnotes | restartes | restartcore}"
+                  " | backupnotes | restartes | restartcore | restartcoreifstopped}"
 
     elif helptopic != '':
-        helpdir = '/apps/code/aageno/scripts/help/'
+        helpdir = getSysConfig('aageno_app','aagenoBase')+'/scripts/help/'
         if helptopic == 'options' or helptopic == '':
             files =  glob.glob(helpdir+"*.txt")
             count = 0;
