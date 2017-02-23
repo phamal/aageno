@@ -6,10 +6,7 @@ import sys, getopt
 import subprocess
 import glob
 import os
-import re
-import time
-import sh
-import xml
+import configparser
 
 
 DPX_TEST_URL = ""
@@ -18,6 +15,11 @@ NOTIFICATION_TEST_URL = ""
 
 
 # Status URLS ###
+
+def getSysConfig(section,key):
+    config = configparser.ConfigParser()
+    config.read('/etc/aageno/data.ini')
+    return config[section][key]
 
 
 
@@ -82,7 +84,10 @@ def monitorFlaskApp(domain):
         flaskApp = "http://159.203.66.191:5000/test"
 
         response = getUrlResponse(flaskApp)
-        print str(response);
+        if response.status_code == 200:
+            printSuccess("Aaageno is running")
+        else:
+            printError("Aaagento is running")
 
 
 
@@ -111,7 +116,8 @@ def backUpNotes(domain):
     runAndPrintCommand(['./brahman.py'])
 
 def startCore(domain):
-    os.chdir('/apps/code/aageno/core/')
+    baseDir = getSysConfig('aageno_app','aagenoBase')
+    os.chdir(baseDir+'/core/')
     runAndPrintCommand(['./main.py'])
 
 def stopCore(domain):
