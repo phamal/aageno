@@ -7,8 +7,11 @@ from flask import jsonify
 import json
 import requests
 from elasticsearch import  Elasticsearch
+from flask_cors import CORS, cross_origin
+
 
 app = Flask(__name__)
+CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:kurakai@localhost/aageno'
 db = SQLAlchemy(app)
 
@@ -25,7 +28,7 @@ def stocksList():
     company = {}
     return "Show all of the stocks"
 
-@app.route("api/notes")
+@app.route("/api/notes")
 def notes():
     note = {}
     note["body"] = "Note Body"

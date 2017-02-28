@@ -8,6 +8,7 @@ sudo pip install flask
 sudo pip install flask_sqlalchemy
 sudo pip install sqlalchemy
 sudo pip install configparser
+sudo pip install flask-cors
 echo "sudo pip install pandas "
 echo "sudo pip install tika "
 echo "Restarting aageno app"
