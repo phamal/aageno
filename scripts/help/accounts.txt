@@ -33,19 +33,36 @@ Outlook :
 	phamal@periscopeholdings.com | pe4zRKpuNnbu
 
 NIC Portal Login:
+	URL:  https://tpe-test.dev.cdc.nicusa.com/tpe2admin/Login.aspx
+	Username:  periscope_emm
+	Password:   Purple$12i3
 
-Accounts
-	Suntrust mortgage -- phamal12/M@1 Loan Number : 0210327243
-	UCCCU - phamal rJ1
-	https://my.ucreditu.com | Subaru payment | phamal k1| Account Number : #3252112
-	Paylocity  https://login.paylocity.com phamal b6202 rgJd1!
-	Wellsfargo phamal 9k1
-	Rocky mountain power 
-	intaact 
-	etrade
-	class.stanford.com 
+Suntrust Mortgage
+	phamal12/M@1 Loan Number : 0210327243
+
+Subaru Car Loan @ University Federal Credit Union	
+	https://my.ucreditu.com | phamal k1| Account Number : #3252112
+
+Comcast xfinity :	
 	comcast dhungin 91
 	comcast Avash : Avashlohani1369@c.net  Gotohell1
+	
+
+Godaddy :
+	phamal M@12 -- prakashhamal@gmail.com
+
+Bigtime :
+	phamal@periscopeholdings.com ki
+
+ADP 
+	my.adp.com/workforcenow.adp.com phamal 91
+	
+	
+	UCCCU - phamal rJ1
+	Paylocity  https://login.paylocity.com phamal b6202 rgJd1!
+	Wellsfargo phamal 9k1
+	class.stanford.com 
+	comcast dhungin 91
 	apple prakashhamal@gmail.com M@1
 	ebay prakashhamal@gmail.com r1
 	shop.aageno.com rJ1
@@ -64,14 +81,13 @@ Accounts
 	Gotommeeting prakashhamal@gmail.com rJ1
 	
 	Western union -- prakashhamal@gmail.com M@1
-	
-	godaddy -- phamal M@12 -- prakashhamal@gmail.com
+	 
 
 	marketo -- phamal@bidsync.com bdv1
 
 	turbotax - prakashhamal@gmail.com 91
 
-	Bigtime - phamal@periscopeholdings.com ki
+	
 
 	Bill.com phamal@bidsync.com rJ1
 

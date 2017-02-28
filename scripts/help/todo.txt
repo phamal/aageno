@@ -6,7 +6,14 @@ Work todo :
 	* Fix defects by keith
 	* How to access crucible from home. 
 	* Create buyspeed environment
+	* NIC Release Checklist
+		1. Create buyspeed instance for e-Maryland 
+		2. Create e-Maryland agency in Bidsync
+		3. Update agency settings > SKU and percentage 
+		4. Get the production credentials for NIC and update them
+
 Home todo :
+	* Pay West town fee | Investigate what that fee is for
 	* Compile vegas expenses. 
 	* Take Jyotsana to doctor on friday. 
 	* File EAD for Jyotsana http://www.h1bwiki.com/h4-ead-filing-guide-document-checklist/
@@ -20,7 +27,12 @@ Home todo :
 	* Create an app to parse all the wellsfargo transactions and categorize them.
 	* Call etrade and get find out what to do with the loss of Sandridge and Pennverginia which went bankrupt.
 	* Additional source of income.(Dog vacay, website advertisement, app advertisement, freelance)  
-
+	* Vegas Expense:
+		> Bonanza Gift Shop | Fireball and water | 32
+		> Grandlux Cafe | Late night dinner | 60.00
+		> CVS Pharmacy | Water | 11
+		> Cab : 35 
+		> Total : 138
 WORK Daily:
 	* Daily Scrum: Link : https://periscopeholdings.highfive.com/daily-scrum-team-011 | Phone : 1 201-479-9764
 	* Crucible make sure all reviews are complete

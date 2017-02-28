@@ -8,59 +8,113 @@ import glob
 import os
 import configparser
 
+def main():
+    myopts, args = getopt.getopt(sys.argv[1:], "d:s:a:p:h:t:")
 
-DPX_TEST_URL = ""
-NOTIFICATION_TEST_URL = ""
+    domain = 'dev'
+    action = ''
+    status = ''
+    parameter = ''
+    helptopic = ''
+    anttestfile = ''
+    for o, a in myopts:
+        if o == '-d':
+            domain = a
+        elif o == '-s':
+            status = a
+        elif o == '-a':
+            action = a
+        elif o == '-h':
+            helptopic = a
+        else:
+            print("Usage: %s -d input -s output" % sys.argv[0])
+
+    if status != '':
+        if status == 'all':
+            monitorAll(domain)
+        else:
+            print "Type what status you want to see. statuses {elasticsearch }"
+    elif action != '':
+        if action == 'stocks':
+            stocksDownload(domain)
+        if action == "downloadlib":
+            downloadLib(domain)
+        if action == "startcore":
+            startCore(domain)
+        if action == "stopcore":
+            stopCore(domain)
+        if action == 'backupnotes':
+            backUpNotes(domain)
+        if action == 'restartes':
+            restartElasticsearchIfNeeded(domain)
+        if action == 'restartcoreifstopped':
+            restartCoreIfNeeded(domain)
+        if action == 'restartcore':
+            stopCore(domain)
+            startCore(domain)
+        else:
+            print "Type what action to perform. actions : {stocks | dowanloadlib | startcore " \
+                  " | backupnotes | restartes | restartcore | restartcoreifstopped}"
+
+    elif helptopic != '':
+        helpdir = getSysConfig('aageno_app','aagenoBase')+'/scripts/help/'
+        if helptopic == 'options' or helptopic == '':
+            files =  glob.glob(helpdir+"*.txt")
+            count = 0;
+            line = ""
+            for file in files:
+                print os.path.splitext(os.path.basename(file))[0]
+
+
+        else:
+            if helptopic.find(".") == -1:
+                file = helpdir + helptopic + '.txt';
+            else:
+                file = helpdir + helptopic;
+
+            subprocess.call(['vi', file])
 
 
 
-# Status URLS ###
+
+    else:
+        print "Looks like you need some help. -h helptopics"
+
+
+
+
+
 
 def getSysConfig(section,key):
     config = configparser.ConfigParser()
     config.read('/etc/aageno/data.ini')
     return config[section][key]
 
-
-
 def getUrlResponseJson(url):
-    # url = "http://dev.bidsync.com:9380/bidsync-business-provider/rs/batch/mailgunDeliveryStatuses"
-
     response = requests.get(url)
-
     json_obj = json.loads(response.text)
-
     return json_obj
-
 
 def getUrlResponse(url):
     response = requests.get(url)
     return response
-
 
 def writeListToCSV():
     myfile = open('testresults.csv', 'wb')
     wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
     # wr.writerow(mylist)
 
-
 def monitorApis():
     print "Checking the statuses of the apis -- "
-
-
 
 def runNotificationTestSuite():
     print "Running notification test automation --- "
 
-
-
 def printError(msg):
     print bcolors.FAIL + msg + bcolors.ENDC
 
-
 def printSuccess(msg):
     print bcolors.OKGREEN + msg + bcolors.ENDC
-
 
 def monitorElasticSearch(domain):
     try:
@@ -89,8 +143,6 @@ def monitorFlaskApp(domain):
         else:
             printError("Aaagento is running")
 
-
-
     except IOError:
         printError("Error connecting aageno main app")
 
@@ -100,9 +152,6 @@ def monitorAll(domain):
     monitorElasticSearch(domain)
     monitorFlaskApp(domain)
 
-
-
-############# Actions ###########################
 def stocksDownload(domain):
     os.chdir(getSysConfig('aageno_app','aagenoBase')+'/extractor/')
     runAndPrintCommand(['./main.py'])
@@ -166,104 +215,8 @@ def runAndPrintCommand(command):
     output = action.communicate()[0]
     print output
 
-def startAll(domain,parameter):
-    os.chdir('/apps/code/bidsync')
-
-    print "ant dist"
-    #runAndPrintCommand(['ant','dist'])
-
-    print "wft bidsync undeploy"
-    runAndPrintCommand(['wft','bidsync','undeploy'])
-    print "wft bidsync stop"
-    runAndPrintCommand(['wft', 'bidsync', 'undeploy'])
-    print "wft bidsync start"
-    runAndPrintCommand(['wft', 'bidsync', 'undeploy'])
-    print "wft bidsync deploy"
-    runAndPrintCommand(['wft', 'bidsync', 'deploy'])
-
-
-
 ############ Actions ##############################
 
-
-def main():
-    myopts, args = getopt.getopt(sys.argv[1:], "d:s:a:p:h:t:")
-
-    domain = 'dev'
-    action = ''
-    status = ''
-    parameter = ''
-    helptopic = ''
-    anttestfile = ''
-    for o, a in myopts:
-        if o == '-d':
-            domain = a
-        elif o == '-s':
-            status = a
-        elif o == '-a':
-            action = a
-        elif o == '-h':
-            helptopic = a
-        elif o == '-t':
-            anttestfile = a
-        elif o == '-p':
-            try:
-                parameter = json.loads(a)
-            except ValueError:
-                parameter = a;
-        else:
-            print("Usage: %s -d input -s output" % sys.argv[0])
-
-    if status != '':
-        if status == 'all':
-            monitorAll(domain)
-        else:
-            print "Type what status you want to see. statuses {elasticsearch }"
-    elif action != '':
-        if action == 'stocks':
-            stocksDownload(domain)
-        if action == "downloadlib":
-            downloadLib(domain)
-        if action == "startcore":
-            startCore(domain)
-        if action == "stopcore":
-            stopCore(domain)
-        if action == 'backupnotes':
-            backUpNotes(domain)
-        if action == 'restartes':
-            restartElasticsearchIfNeeded(domain)
-        if action == 'restartcoreifstopped':
-            restartCoreIfNeeded(domain)
-        if action == 'restartcore':
-            stopCore(domain)
-            startCore(domain)
-        else:
-            print "Type what action to perform. actions : {stocks | dowanloadlib | startcore " \
-                  " | backupnotes | restartes | restartcore | restartcoreifstopped}"
-
-    elif helptopic != '':
-        helpdir = getSysConfig('aageno_app','aagenoBase')+'/scripts/help/'
-        if helptopic == 'options' or helptopic == '':
-            files =  glob.glob(helpdir+"*.txt")
-            count = 0;
-            line = ""
-            for file in files:
-                print os.path.splitext(os.path.basename(file))[0]
-
-
-        else:
-            if helptopic.find(".") == -1:
-                file = helpdir + helptopic + '.txt';
-            else:
-                file = helpdir + helptopic;
-
-            subprocess.call(['vi', file])
-
-
-
-
-    else:
-        print "Looks like you need some help. -h helptopics"
 
 
 

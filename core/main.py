@@ -3,6 +3,7 @@
 from flask import request
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask import jsonify
 import json
 import requests
 from elasticsearch import  Elasticsearch
@@ -21,7 +22,15 @@ def test():
 
 @app.route("/stocks")
 def stocksList():
+    company = {}
     return "Show all of the stocks"
+
+@app.route("api/notes")
+def notes():
+    note = {}
+    note["body"] = "Note Body"
+    note["title"] = "Note Title"
+    return jsonify(note);
 
 
 @app.route("/note/<tag>")

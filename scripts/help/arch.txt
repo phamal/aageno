@@ -21,6 +21,9 @@
        cp /apps/web/tools/security-service/java_jars/* jdk1.7.0_80.jdk/Contents/Home/jre/lib/ext/
        cp /apps/web/tools/security-service/java_jars/* jdk1.8.0_112.jdk/Contents/Home/jre/lib/ext/ 
 
+> System Config : 
+	* default.properties has the system properties like database password.
+
 > Logging : 
 	1. This allows us to log from anywhere.
 		RSHttpClient rsHttpClient = new RSHttpClient("http://dev.bidsync.com");
