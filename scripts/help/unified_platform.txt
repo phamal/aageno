@@ -1,0 +1,15 @@
+Goals :
+      1
+      1
+      1
+      1  
+
+
+Technologies :
+    1. Swagger.io for API design, documentation and testing.
+    2. Swarm/ Spring boot / Spring cloud for the mircorservices.
+    3. Oauth2 for the authentication.
+    4. Angluar2/React for UI ??
+    5. Logging ?
+    6. What Database ??
+    7.

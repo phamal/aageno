@@ -13,8 +13,9 @@ Work todo :
 		4. Get the production credentials for NIC and update them
 
 Home todo :
+	* Update questar credit card
+	* Tmobile payment 
 	* Pay West town fee | Investigate what that fee is for
-	* Compile vegas expenses. 
 	* Take Jyotsana to doctor on friday. 
 	* File EAD for Jyotsana http://www.h1bwiki.com/h4-ead-filing-guide-document-checklist/
 	* File tax return before april. Etrade loss. Jyotsana's non eligibility. Mortgage tax
@@ -27,12 +28,7 @@ Home todo :
 	* Create an app to parse all the wellsfargo transactions and categorize them.
 	* Call etrade and get find out what to do with the loss of Sandridge and Pennverginia which went bankrupt.
 	* Additional source of income.(Dog vacay, website advertisement, app advertisement, freelance)  
-	* Vegas Expense:
-		> Bonanza Gift Shop | Fireball and water | 32
-		> Grandlux Cafe | Late night dinner | 60.00
-		> CVS Pharmacy | Water | 11
-		> Cab : 35 
-		> Total : 138
+
 WORK Daily:
 	* Daily Scrum: Link : https://periscopeholdings.highfive.com/daily-scrum-team-011 | Phone : 1 201-479-9764
 	* Crucible make sure all reviews are complete

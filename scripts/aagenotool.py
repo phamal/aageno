@@ -52,6 +52,8 @@ def main():
         if action == 'restartcore':
             stopCore(domain)
             startCore(domain)
+        if action == 'startview':
+            startView(domain)
         else:
             print "Type what action to perform. actions : {stocks | dowanloadlib | startcore " \
                   " | backupnotes | restartes | restartcore | restartcoreifstopped}"
@@ -170,6 +172,11 @@ def startCore(domain):
 
 def stopCore(domain):
     killProcessesInPort('5000')
+
+def startView(domain):
+    os.chdir(getSysConfig('aageno_app','aagenoBase')+'/view/quickstart/')
+    runAndPrintCommand(['npm','start'])
+
 
 def restartElasticsearchIfNeeded(domain):
     running = monitorElasticSearch(domain)
