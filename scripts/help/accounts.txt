@@ -54,7 +54,12 @@ Godaddy :
 Bigtime :
 	phamal@periscopeholdings.com ki
 
+Digital Ocean:
+	phamal : kurakani
+	Digital Ocean : Droplet Name: aageno ,
+	IP Address: 159.203.66.191, Username: root, Password: f74d7bec47d73ba2
 ADP 
+
 	my.adp.com/workforcenow.adp.com phamal 91
 	
 	

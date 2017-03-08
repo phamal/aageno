@@ -3,4 +3,36 @@
 3. It is multi tenant 
 4. Policing
 5. Features in Linkspuls and Buyspeed Vendor management. 
- 
+
+
+Entities:
+	Org/Vendor 
+		dpx_supplier
+		org_org
+
+	User
+		org_user
+		org_person
+		org_address
+		org_contacts
+	
+	Address
+		org_address
+	
+	Classification
+		dpx_category
+		dpx_orgcats
+
+	Vendor Business Profile	
+		supplier_reference
+		supplier_notable_contract
+		supplier_agency
+		supplier_dba_names 
+
+	Vendor documents
+		doc_doc holds various documents like 
+			(w9, Org Charts, Business Registrations, Insurance, Ownerships)
+
+	Subscriptions
+		subscriptions
+
