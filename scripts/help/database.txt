@@ -14,4 +14,36 @@ Liquibase :
 	db-validate             Check the changelog for errors.  Usage:  ant db-validate {-Ddb=[dpx|ref|dw|dm]}
  
 
+qaOngoingConnectionString = "DSN=qa_ongoing;UID=qa;PWD=q2p2ss;DBQ=RDEV"
+qaRefactorConnectionString = "DSN=qa_refactor;UID=qaref;PWD=q2r3fp2ss;DBQ=RDEV"
+qaWarehouseConnectionString = "DSN=qa_dw;UID=qadw;PWD=q2dwp2ss;DBQ=RDEV"
+qa2OngoingConnectionString = "DSN=qa2_ongoing;UID=qa2;PWD=q22p2ss;DBQ=RDEV"
+qa2RefactorConnectionString = "DSN=qa2_refactor;UID=qa2ref;PWD=q22r3fp2ss;DBQ=RDEV"
+qa2WarehouseConnectionString = "DSN=qa2_dw;UID=qa2dw;PWD=q22dwp2ss;DBQ=RDEV"
+labOngoingConnectionString = "DSN=lab_ongoing;UID=lab;PWD=l2bp2ss;DBQ=RDEV"
+labRefactorConnectionString = "DSN=lab_refactor;UID=labref;PWD=l2br3fp2ss;DBQ=RDEV"
+labWarehouseConnectionString = "DSN=lab_dw;UID=labdw;PWD=l2bdwp2ss;DBQ=RDEV"
+stageOngoingConnectionString = "DSN=stage_ongoing;UID=stage;PWD=p2ssst2g3;DBQ=DPXSTG1"
+stageRefactorConnectionString = "DSN=stage_refactor;UID=stageref;PWD=p2ssst2g3r3f;DBQ=DPXSTG1"
+stageWarehouseConnectionString = "DSN=stage_dw;UID=stagedw;PWD=st2g3dwp2ss;DBQ=DPXSTG1"
+hotfixOngoingConnectionString = "DSN=hotfix_ongoing;UID=hotfix;PWD=h0tf1xp2ss;DBQ=RDEV"
+hotfixRefactorConnectionString = "DSN=hotfix_refactor;UID=hotfixref;PWD=h0tf1xr3fp2ss;DBQ=RDEV"
+hotfixWarehouseConnectionString = "DSN=hotfix_dw;UID=hotfixdw;PWD=h0tf1xdwp2ss;DBQ=RDEV"
+caltstOngoingConnectionString = "DSN=caltst_ongoing;UID=caltst;PWD=c2ltstp2ss;DBQ=DPXSTG"
+caltstRefactorConnectionString = "DSN=caltst_refactor;UID=caltstref;PWD=c2ltstr3fp2ss;DBQ=DPXSTG"
+caltstWarehouseConnectionString = "DSN=caltst_dw;UID=caltstdw;PWD=c2ltstdwp2ss;DBQ=DPXSTG"
+salesOngoingConnectionString = "DSN=sales_temp_ongoing;UID=sales;PWD=s2l3sp2ss;DBQ=DPXSTG2"
+salesRefactorConnectionString = "DSN=sales_temp_ref;UID=salesref;PWD=s2l3sr3fp2ss;DBQ=DPXSTG2"
+salesWarehouseConnectionString = "DSN=sales_temp_dw;UID=salesdw;PWD=s2l3sdwp2ss;DBQ=DPXSTG2"
+calqaOngoingConnectionString = "DSN=calqa_ongoing;UID=calqa;PWD=c2lq2p2ss;DBQ=RDEV"
+calqaRefactorConnectionString = "DSN=calqa_ref;UID=calqaref;PWD=c2lq2r3fp2ss;DBQ=RDEV"
+calqaWarehouseConnectionString = "DSN=calqa_dw;UID=calqadw;PWD=c2lq2dwp2ss;DBQ=RDEV"
+trainingOngoingConnectionString = "DSN=training_ongoing;UID=training;PWD=tr21n1ngp2ss;DBQ=RDEV"
+trainingRefactorConnectionString = "DSN=training_refactor;UID=trainingref;PWD=tr21n1ngr3fp2ss;DBQ=RDEV"
+trainingWarehouseConnectionString = "DSN=training_dw;UID=trainingdw;PWD=tr21n1ngdwp2ss;DBQ=RDEV"
+testwebOngoingConnectionString = "DSN=ntestdb_ongoing;UID=dpx;PWD=dpx;DBQ=NTESTDB"
+testwebRefactorConnectionString = "DSN=ntestdb_ref;UID=ref;PWD=dpx;DBQ=NTESTDB"
+testwebWarehouseConnectionString = "DSN=ntestdb_dw;UID=dw;PWD=dpx;DBQ=NTESTDB"
+
+
 

@@ -1,4 +1,6 @@
-import {Component, ChangeDetectorRef, Injectable} from '@angular/core';
+import {Component, ChangeDetectorRef, Injectable, OnInit} from '@angular/core';
+import {NoteService} from "./services/note.service";
+import {Note} from "./model/Note";
 
 @Component({
   selector: 'my-app',
@@ -14,24 +16,35 @@ import {Component, ChangeDetectorRef, Injectable} from '@angular/core';
     </div>
   </div>  
 `,
+ providers: [NoteService]
 })
 
 
-export class AppComponent  {
+
+export class AppComponent  implements OnInit {
   public typed : String;
   public actionType : String;
   public suggestion : String;
   public typedWords : string[];
-  public cdr;
+  public note : Note;
+  public errorMessage : String;
 
-  constructor(){
+
+  constructor(private noteService : NoteService){
     this.typed = "";
     this.actionType = "Search";
+    this.note = new Note();
+  }
+
+  ngOnInit():void{
   }
 
 
   public takeAction():void{
+
     console.log("Take appropriation action for "+this.typed);
+    this.getNote("nic");
+    console.log(this.note.title)
   }
 
   public assist():String{
@@ -51,6 +64,13 @@ export class AppComponent  {
 
   public getActionType():String{
     return this.actionType;
+  }
+
+  public getNote(title:String){
+    this.noteService.getNote(title)
+      .subscribe(
+        note => this.note = note,
+        error =>  this.errorMessage = <any>error);
   }
 
 

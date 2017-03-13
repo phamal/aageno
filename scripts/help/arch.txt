@@ -25,9 +25,10 @@
 	* default.properties has the system properties like database password.
 
 > Connection : 
-	1. I was unable to ssh into stage. But was able to ssh into hotfix and and ssh into stage from there.  
-	2. Unable to get in to the Crucible. Go this link http://phi-git.phi.local:8060/
-	3. Setting up email in the phone : https://emailhelp.rackspace.com/?_ga=1.53778664.1916569020.1487177424
+	* To connect the shared folders. finder > Go > connect to server > smb://phi-files.phi.local/groups/Buyspeed
+	* I was unable to ssh into stage. But was able to ssh into hotfix and and ssh into stage from there.  
+	* Unable to get in to the Crucible. Go this link http://phi-git.phi.local:8060/
+	* Setting up email in the phone : https://emailhelp.rackspace.com/?_ga=1.53778664.1916569020.1487177424
 > Logging : 
 	1. This allows us to log from anywhere.
 		RSHttpClient rsHttpClient = new RSHttpClient("http://dev.bidsync.com");

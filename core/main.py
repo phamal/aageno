@@ -45,7 +45,7 @@ def addNote():
     note["body"] = "Body added"
     return jsonify(note);
 
-@app.route('/api/note/<tag>', methods=['POST'])
+@app.route('/api/note/<tag>')
 def getNote(tag):
     es = Elasticsearch(['http://159.203.66.191:9200'])
     res = es.get(index="brahman", doc_type='note', id=tag)
