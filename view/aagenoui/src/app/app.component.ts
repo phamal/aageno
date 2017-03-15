@@ -44,7 +44,7 @@ export class AppComponent  implements OnInit {
 
     console.log("Take appropriation action for "+this.typed);
     this.getNote("nic");
-    console.log(this.note.title)
+    console.log(this.note.body)
   }
 
   public assist():String{

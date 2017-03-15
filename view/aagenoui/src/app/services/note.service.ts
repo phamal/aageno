@@ -16,7 +16,8 @@ export class NoteService
 
   getNote(title:String): Observable<Note>
   {
-    return this.http.get(this.apirUrl+"note/"+title)
+    console.log(this.apirUrl+"notes");
+    return this.http.get(this.apirUrl+"notes")
       .map(this.extractData)
       .catch(this.handleError);
   }
