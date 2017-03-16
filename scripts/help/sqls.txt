@@ -92,4 +92,30 @@ update subscriptions set credit_card_id = null where oid = :oid;
 
 
 #### Mailgun report for heidi ##### 
-eelect email,error,status,note,closed_at From Mailgun_Bounce_Email where closed_at >= '01-DEC-16' and closed_at < '01-JAN-17';
+select email,error,status,note,closed_at From Mailgun_Bounce_Email where closed_at >= '01-DEC-16' and closed_at < '01-JAN-17';
+
+
+#### Argo Vendor ####
+with 
+bso_vendor 
+as (
+select 
+v.vendor_nbr,name as title,to_char(vendor_description) as description,v.date_on as creation_date,
+v.fax_nbr as fax,v.fed_id_nbr as fed_tax_id 
+from vendor@qa_head v
+where vendor_nbr in ('9000002507')
+),
+bidsync_vendor
+as (
+select 
+o.oid,o.name as title,to_char(s.description) as description,o.cdate as creation_date,
+o.fax as fax,activation_date as activation_date,s.fed_tax_id 
+from hotfix.org_org o, hotfix.dpx_supplier s
+where o.oid = s.supplieroid and o.oid in (4846)
+
+)
+select title,description,creation_date,fax,null  as activation_date,fed_tax_id  from bso_vendor
+union
+select title,description,creation_date,fax,activation_date as activation_date,fed_tax_id from bidsync_vendor
+;
+

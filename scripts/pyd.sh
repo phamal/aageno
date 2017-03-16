@@ -12,4 +12,3 @@ sudo pip install flask-cors
 echo "sudo pip install pandas "
 echo "sudo pip install tika "
 echo "Restarting aageno app"
-python /root/aageno/scripts/aagenotool.py -a restartcore

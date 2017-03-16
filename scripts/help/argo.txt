@@ -1,8 +1,4 @@
-1. Hackstreet is the Core 
-2. Think of all 
-3. It is multi tenant 
-4. Policing
-5. Features in Linkspuls and Buyspeed Vendor management. 
+1. 
 
 
 Entities:
