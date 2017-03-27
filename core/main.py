@@ -41,7 +41,7 @@ def notes():
         note = str(hit["_source"]['body'])
         note = "<br />".join(note.split("\n"))
         note = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".join(note.split("\t"))
-        returnString +=  "<h3>"+title+"</h3><div style='border:1px solid #000;padding:10px; margin-bottom:30px;'> "+note+"</div>"
+        returnString +=  "<div style='border:1px solid #000;padding:10px; margin-bottom:30px;'> <b>"+title+"</b><br>"+note+"</div>"
     return returnString
 
 @app.route('/api/addNote', methods=['POST'])
