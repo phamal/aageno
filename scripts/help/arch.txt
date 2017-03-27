@@ -1,4 +1,10 @@
 ######## Architecture ###########
+> Monitoring 
+	> Batches statuses | Batches admin page in the internal 
+	> Heartbeat monitoring 
+	> New Relic | rpm.newrelic.com phamal@periscopeholdings.com rj1	
+
+
 > Things to check for the smooth running of the application : 
 	1. Database is up. Check the vm is running. Be able to query dpx and refactor. 
 	2. All the apps are deployed. Check the status by running wft bidsync|DPX|notification|cas status. 
@@ -38,3 +44,6 @@
 		catch (IOException e) {
 			e.printStackTrace();
 		}
+>Avatax : 
+	https://avatax.avalara.net/
+

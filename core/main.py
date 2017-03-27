@@ -29,12 +29,20 @@ def stocksList():
     company = {}
     return "Show all of the stocks"
 
-@app.route("/api/notes")
+@app.route("/notes",methods=['GET', 'POST'])
 def notes():
-    note = {}
-    note["body"] = "Note Body"
-    note["title"] = "Note Title"
-    return jsonify(note);
+    es = Elasticsearch(['http://159.203.66.191:9200'])
+    searchString = request.args.get("key","")
+    res = es.search(index="brahman", doc_type="note", body={"query": {"match": {"body": searchString}}})
+    ##res = es.search(index="test-index", body={"query": {"match_all": {}}})
+    returnString = ""
+    for hit in res['hits']['hits']:
+        title = str(hit["_id"])
+        note = str(hit["_source"]['body'])
+        note = "<br />".join(note.split("\n"))
+        note = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".join(note.split("\t"))
+        returnString +=  "<h3>"+title+"</h3><div style='border:1px solid #000;padding:10px; margin-bottom:30px;width:800px;'> "+note+"</div>"
+    return returnString
 
 @app.route('/api/addNote', methods=['POST'])
 def addNote():

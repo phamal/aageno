@@ -2,6 +2,7 @@
 ### NAVIGATION
 alias mytools='/apps/code/aageno/scripts/phitools.sh '
 alias mytool='/apps/code/aageno/scripts/test.py '
+alias kanchi='python /apps/code/aageno/scripts/kanchi.py'
 alias aagenotool='/apps/code/aageno/scripts/aagenotool.py'
 alias aagenopush='/apps/code/aageno/push.sh '
 alias sshaageno='mytool -a sshaageno'

@@ -1,30 +1,23 @@
 ###### TODO List ########
 Work todo :
-	* Finish Report, Demo that to daniella 
-	* Remove SupplierBsoContract entity and tablei
-	* Perform some end-to-end testings
-	* Fix defects by keith
-	* How to access crucible from home. 
-	* Create buyspeed environment
-	* NIC Release Checklist
-		1. Create buyspeed instance for e-Maryland 
-		2. Create e-Maryland agency in Bidsync
-		3. Update agency settings > SKU and percentage 
-		4. Get the production credentials for NIC and update them
+	* Revisit the Certification Piece. 
+	* Add columns
+	* Make sure the Comments are there. 
+	* How to handle statuses. For example vendor can be Active, Pending Confirmation Or Suspened. You have active status. 
+
 
 Home todo :
+	* http://www.ksl.com/classifieds/listing/43648270
 	* Update questar credit card
-	* Get the carpet cleaning solution
-	* Pay West town fee | Investigate what that fee is for
-	* Take Jyotsana to doctor on friday. Cancel the knee checkup appointment. 
+	* Car chip repair.
+	* Medical report for jyotsana 
 	* File EAD for Jyotsana http://www.h1bwiki.com/h4-ead-filing-guide-document-checklist/
+		* http://www.immihelp.com/h4-visa-ead/documents.html
 	* File tax return before april. Etrade loss. Jyotsana's non eligibility. Mortgage tax
 	* Get light bulbs.
 	* Invest in Standard Chartered and Sikhar Insurance shares in Nepal.
 	* Deposit 2000 to chase bank account. Feb 16. Tax return. 
 	* Return the SSN information to the UHC, Or submit that online 
-	* CAR 
-		> Update university federal credit union with the Insurance information
 	* Create an app to parse all the wellsfargo transactions and categorize them.
 	* Call etrade and get find out what to do with the loss of Sandridge and Pennverginia which went bankrupt.
 	* Additional source of income.(Dog vacay, website advertisement, app advertisement, freelance)  
