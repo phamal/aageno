@@ -33,7 +33,7 @@ def index():
             tag = searchString[1:len(searchString)]
             res = es.get(index="brahman", doc_type='note', id=tag)
             note["title"] = tag;
-            note["body"] = res['_source']['body']
+            note["body"] = str(res['_source']['body']).strip()
             notes.append(note)
         else:
             res = es.search(index="brahman", doc_type="note", body={"query": {"match": {"body": searchString}}})
@@ -42,7 +42,7 @@ def index():
                 note = {}
                 note["title"] = str(hit["_id"])
                 notestr = str(hit["_source"]['body'])
-                note["body"] = notestr
+                note["body"] = notestr.strip()
                 notes.append(note)
 
     return render_template("index.html",notes = notes);

@@ -24,9 +24,9 @@
             {% for note in notes %}
             <div>
                 <h6 class="page-header">{{note.title}}</h6>
-                <pre>
+                <div class="jumbotron" style="white-space: pre-wrap;">
                     {{note.body}}
-                </pre>
+                </div>
             </div>
             {% endfor %}
         </div>
