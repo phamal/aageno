@@ -26,18 +26,24 @@ def index():
 
     notes = []
     if(len(searchString) > 0):
-
+        note = {}
         es = Elasticsearch(['http://159.203.66.191:9200'])
-        res = es.search(index="brahman", doc_type="note", body={"query": {"match": {"body": searchString}}})
-        returnString = ""
-        for hit in res['hits']['hits']:
-            note = {}
-            note["title"] = str(hit["_id"])
-            notestr = str(hit["_source"]['body'])
-            note["body"] = notestr
+        searchString = searchString.strip();
+        if searchString.startswith("#"):
+            tag = searchString[1:len(searchString)]
+            res = es.get(index="brahman", doc_type='note', id=tag)
+            note["title"] = tag;
+            note["body"] = res['_source']['body']
             notes.append(note)
-
-        app.logger.error(returnString)
+        else:
+            res = es.search(index="brahman", doc_type="note", body={"query": {"match": {"body": searchString}}})
+            returnString = ""
+            for hit in res['hits']['hits']:
+                note = {}
+                note["title"] = str(hit["_id"])
+                notestr = str(hit["_source"]['body'])
+                note["body"] = notestr
+                notes.append(note)
 
     return render_template("index.html",notes = notes);
 
