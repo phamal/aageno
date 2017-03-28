@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='bootstrap.min.css') }}">
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='main.css') }}">
+
+<body>
+<div class="container-fluid paddingAll">
+    <div class="row">
+        <form action="/" method="post" class="form-inline">
+            <div class="col-xs-12">
+                <div class="input-group">
+                    <input type="text" name="searchString" class="form-control" style="width:500px;"
+                           placeholder="Search for...">
+                    <span class="input-group-btn">
+                         <button class="btn btn-default" type="submit">Go!</button>
+                    </span>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            {% for note in notes %}
+            <div>
+                <h6 class="page-header">{{note.title}}</h6>
+                <pre>
+                    {{note.body}}
+                </pre>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+

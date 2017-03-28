@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 from flask import request
-from flask import Flask
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask import jsonify
 import json
@@ -16,9 +16,36 @@ CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:kurakai@localhost/aageno'
 db = SQLAlchemy(app)
 
-@app.route("/")
-def hello():
-    return "Hello aageno"
+@app.route("/",methods=['GET', 'POST'])
+def index():
+    searchString = ""
+    if request.method == 'POST':
+       searchString = request.form['searchString']
+    elif request.method == "GET":
+       searchString = request.args.get("searchString", "")
+
+    notes = []
+    if(len(searchString) > 0):
+
+        es = Elasticsearch(['http://159.203.66.191:9200'])
+        res = es.search(index="brahman", doc_type="note", body={"query": {"match": {"body": searchString}}})
+        returnString = ""
+        for hit in res['hits']['hits']:
+            note = {}
+            note["title"] = str(hit["_id"])
+            notestr = str(hit["_source"]['body'])
+            note["body"] = notestr
+            notes.append(note)
+
+        app.logger.error(returnString)
+
+    return render_template("index.html",notes = notes);
+
+@app.route("/addNote")
+def addNote():
+    app.logger.error("Adding note")
+    return render_template("index.html");
+
 
 @app.route("/test")
 def test():
@@ -45,7 +72,7 @@ def notes():
     return returnString
 
 @app.route('/api/addNote', methods=['POST'])
-def addNote():
+def addNoteApi():
     print "Khai k ho ta hit gareko ho ta"
     app.logger.info("ggg "+str(request.get_json(force=True)))
     note = {}
