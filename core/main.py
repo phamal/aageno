@@ -1,12 +1,12 @@
 #!/usr/bin/python
 
 from flask import request
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect,url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask import jsonify
 import json
 import requests
-from elasticsearch import  Elasticsearch
+from elasticsearch import  Elasticsearch,TransportError
 from flask_cors import CORS, cross_origin
 import logging
 
@@ -31,10 +31,14 @@ def index():
         searchString = searchString.strip();
         if searchString.startswith("#"):
             tag = searchString[1:len(searchString)]
-            res = es.get(index="brahman", doc_type='note', id=tag)
-            note["title"] = tag;
-            note["body"] = str(res['_source']['body']).strip()
-            notes.append(note)
+            try:
+                res = es.get(index="brahman", doc_type='note', id=tag)
+                note["title"] = tag;
+                note["body"] = str(res['_source']['body']).strip()
+                notes.append(note)
+            except TransportError as e:
+                app.logger.error(e.info)
+                return redirect(url_for('addNote')+"?id="+tag)
         else:
             res = es.search(index="brahman", doc_type="note", body={"query": {"match": {"body": searchString}}})
             returnString = ""
@@ -47,11 +51,42 @@ def index():
 
     return render_template("index.html",notes = notes);
 
-@app.route("/addNote")
+@app.route("/addNote",methods=['GET', 'POST'])
 def addNote():
-    app.logger.error("Adding note")
-    return render_template("index.html");
+    es = Elasticsearch(['http://159.203.66.191:9200'])
+    id = ""
+    noteStr = ""
+    if request.method == 'POST':
+       id = request.form['id']
+       noteStr = request.form['note']
+       if len(noteStr.strip()) > 0 and len(id.strip()):
+           note = {};
+           note["maintag"] = id
+           note["body"] = noteStr
+           es.index(index="brahman", doc_type='note', id=note["maintag"], body=note)
+           return redirect(url_for('index'))
+    elif request.method == "GET":
+       id = request.args.get("id", "")
+    if (len(id) > 0):
+        note = {}
+        try:
+            res = es.get(index="brahman", doc_type='note', id=id)
+            note["title"] = id;
+            note["body"] = str(res['_source']['body']).strip()
+        except TransportError as e:
+            note["title"] = id;
+            note["body"] = ""
 
+    return render_template("addNote.html",note=note);
+
+
+@app.route("/removeNote",methods=['GET', 'POST'])
+def removeNote():
+    if request.method == "GET":
+         id = request.args.get("id", "")
+         es = Elasticsearch(['http://159.203.66.191:9200'])
+         es.delete(index="brahman", doc_type="note", id=id)
+    return redirect(url_for('index'))
 
 @app.route("/test")
 def test():
